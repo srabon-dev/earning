@@ -48,7 +48,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         }
                       } ,controller: logic.resetEmailController, prefixIcon: Icons.email_outlined,),
                       const SizedBox(height: 24),
-                      CustomButton(text: "Confirm", onTap: (){
+                      logic.isLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Confirm", onTap: (){
                         if(formKey.currentState!.validate()){
                           logic.forget();
                         }

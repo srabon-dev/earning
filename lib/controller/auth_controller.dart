@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earning/core/route/app_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -111,7 +113,7 @@ class AuthController extends GetxController {
         isLoading = false;
         update();
         Fluttertoast.showToast(msg: "Forget password link send successful, please check your email address");
-        Get.offAndToNamed(AppRoute.navScreen);
+        Get.offAndToNamed(AppRoute.loginScreen);
       }).onError((error, stackTrace) {
         isLoading = false;
         update();
@@ -124,5 +126,20 @@ class AuthController extends GetxController {
       update();
       Fluttertoast.showToast(msg: error.message ?? "Something went wrong");
     }
+  }
+
+  @override
+  void onClose() {
+    emailController.clear();
+    passwordController.clear();
+
+    nameController.clear();
+    emailRController.clear();
+    phoneController.clear();
+    passwordRController.clear();
+    confirmPasswordRController.clear();
+
+    resetEmailController.clear();
+    super.onClose();
   }
 }

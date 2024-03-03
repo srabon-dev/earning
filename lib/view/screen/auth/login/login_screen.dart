@@ -19,6 +19,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
     return GetBuilder<AuthController>(
       init: AuthController(),
       builder: (logic) {
@@ -80,28 +82,28 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 24),
 
                     //Login Button ---------------------------
-                    logic.isLoading?Center(child: CircularProgressIndicator(),) : CustomButton(text: "Login", onTap: (){
+                    logic.isLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Login", onTap: (){
                       if(formKey.currentState!.validate()){
                         logic.login();
                       }
                     }),
-                    const SizedBox(height: 24),
 
                     //Navigate Register Screen ------------------
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text("Don't have an Account?"),
-                        GestureDetector(
-                          onTap: (){
-                            Get.toNamed(AppRoute.registerScreen);
-                          },
-                          child: Text(" Register",style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            color: AppColors.greenColor,
-                          ),),
-                        )
-                      ],
+                    const SizedBox(height: 44),
+                    const Text("Don't have an Account?"),
+                    const SizedBox(height: 5),
+                    GestureDetector(
+                      onTap: ()=>Get.toNamed(AppRoute.registerScreen),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 15.0),
+                        width: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: isDarkMode?AppColors.blackColor:AppColors.whiteColor,
+                            border: Border.all(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor)
+                        ),
+                        child: Center(child: Text("Create Account",style: Theme.of(context).textTheme.titleMedium,),),
+                      ),
                     ),
 
                   ],

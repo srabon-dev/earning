@@ -28,6 +28,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
   bool obscureText = true;
   @override
   Widget build(BuildContext context) {
+    var brightness = MediaQuery.of(context).platformBrightness;
+    bool isDarkMode = brightness == Brightness.dark;
     return TextFormField(
       controller: widget.controller,
       textInputAction: widget.textInputAction,
@@ -35,11 +37,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       validator: widget.validator,
       keyboardType: widget.textInputType,
       decoration: InputDecoration(
-        hintStyle: const TextStyle(
-          color: AppColors.blackColor
+        hintStyle: TextStyle(
+          color: isDarkMode?AppColors.whiteColor:AppColors.blackColor
         ),
-        filled: true,
-        fillColor: Colors.white,
         suffixIcon: widget.isPassword ? GestureDetector(
             onTap: toggle,
             child: Padding(
@@ -55,15 +55,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ): null,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.blackColor),
+          borderSide: BorderSide(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.blackColor),
+          borderSide: BorderSide(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.blackColor),
+          borderSide: BorderSide(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),

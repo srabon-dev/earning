@@ -5,20 +5,14 @@ import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyVideoScreen extends StatelessWidget {
-  const MyVideoScreen({super.key});
+class MyPostScreen extends StatelessWidget {
+  const MyPostScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: const CustomAppBar(name: "My Video"),
-        floatingActionButton: FloatingActionButton.extended(
-          label: const Center(child: Text("Post Video")),
-          onPressed: () {
-            Get.toNamed(AppRoute.videoPostScreen);
-          },
-        ),
         body: ListView.builder(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 12),

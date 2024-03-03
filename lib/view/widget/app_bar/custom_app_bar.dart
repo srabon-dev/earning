@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   const CustomAppBar({super.key,
     required this.name,
     this.onTap,
+    this.icon,
     this.isBack= false,
-    this.notification});
+    this.rightOnTap});
 
   final String name;
+  final IconData? icon;
   final bool isBack;
-  final VoidCallback? notification;
+  final VoidCallback? rightOnTap;
   final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
@@ -26,14 +29,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: rightOnTap != null?MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
         children: [
-          isBack?IconButton(onPressed: onTap, icon: const Icon(Iconsax.back_square,size: 28,),):const Padding(
+          isBack?IconButton(onPressed: onTap ?? (){
+            Get.back();
+          }, icon: const Icon(Iconsax.back_square,size: 28,),):const Padding(
             padding: EdgeInsets.only(right: 12.0),
             child: SizedBox(),
           ),
-          Text(name,style: const TextStyle(fontWeight: FontWeight.w800,fontSize: 24,fontFamily: "Bold"),),
-          notification != null?IconButton(onPressed: notification, icon: const Icon(Iconsax.notification,size: 24,),):const SizedBox(),
+          Text(name,style: const TextStyle(fontWeight: FontWeight.w800,fontSize: 18,fontFamily: "Bold"),),
+          rightOnTap != null?IconButton(onPressed: rightOnTap, icon: Icon(icon,size: 24,),):const SizedBox(),
         ],
       ),
     );
