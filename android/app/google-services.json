@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "86670873741",
+    "project_id": "earning-5ed58",
+    "storage_bucket": "earning-5ed58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86670873741:android:4e2a880cb141623e5afec4",
+        "android_client_info": {
+          "package_name": "com.graph.earningapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuAT6Klhtq5iVoS-tgHrOvjWveI3Sn4W8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
