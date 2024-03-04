@@ -3,4 +3,5 @@ class AppImages{
 
 
   static const String logo = "$base/logo.png";
+  static const String profile = "$base/profile.png";
 }

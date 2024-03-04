@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:earning/constant/app_constants.dart';
 import 'package:earning/core/route/app_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
-  const HomeAppBar({super.key});
-
+  const HomeAppBar({super.key, required this.scaffoldKey});
+  final GlobalKey<ScaffoldState> scaffoldKey;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +25,13 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(onPressed: (){}, icon: const Icon(Iconsax.menu,size: 28,),),
+          IconButton(onPressed: (){
+            try{
+              scaffoldKey.currentState?.openDrawer();
+            }catch(error){
+              log(error.toString());
+            }
+          }, icon: const Icon(Iconsax.menu,size: 28,),),
           const Text(AppConstants.appName,style: TextStyle(fontWeight: FontWeight.w800,fontSize: 32,fontFamily: "Bold"),),
           IconButton(onPressed: () async {
             await FirebaseAuth.instance.signOut().then((value){

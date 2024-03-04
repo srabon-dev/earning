@@ -1,13 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:earning/constant/app_colors.dart';
+import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:like_button/like_button.dart';
 import 'package:readmore/readmore.dart';
 
 class PostCard extends StatelessWidget {
-  const PostCard({super.key});
-
+  const PostCard({super.key, this.isMyPost = false,this.isFavorite = false});
+  final bool isMyPost;
+  final bool isFavorite;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -65,16 +67,34 @@ class PostCard extends StatelessWidget {
                         const Icon(Iconsax.verify,size: 18,color: AppColors.greenColor,),
                       ],
                     ),
-                    PopupMenuButton<String>(
+                    isFavorite?PopupMenuButton<String>(
                       onSelected: (String choice){
 
                       },
                       itemBuilder: (BuildContext context)=>[
-                        const PopupMenuItem<String>(
-                            value: "Report",
+                        const PopupMenuItem(
+                            value: "Remove Favorite",
                             child: ListTile(
-                              title: Text("Report"),
-                              leading: Icon(Iconsax.receipt),
+                              title: Text("Remove Favorite"),
+                              leading: Icon(Iconsax.lovely5),
+                            )),
+                      ],
+                    ): PopupMenuButton<String>(
+                      onSelected: (String choice){
+
+                      },
+                      itemBuilder: (BuildContext context)=>[
+                        PopupMenuItem(
+                            value: isMyPost?"Delete": "Favorite Post",
+                            child: ListTile(
+                              title: Text(isMyPost? "Delete": "Favorite Post"),
+                              leading: Icon(isMyPost?Icons.delete_outline:Iconsax.lovely5),
+                            )),
+                        PopupMenuItem<String>(
+                            value: isMyPost?"Edit":"Report Post",
+                            child: ListTile(
+                              title: Text(isMyPost?"Edit":"Report Post"),
+                              leading: Icon(isMyPost?Iconsax.edit:Iconsax.receipt),
                             )),
                       ],
                     ),
@@ -101,17 +121,23 @@ class PostCard extends StatelessWidget {
               ),
 
               //Image Section
-              SizedBox(
-                width: width,
-                height: height / 5,
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator()),
-                  errorWidget: (context, url, error) =>
-                  const Icon(Icons.error),
-                  imageUrl:
-                  "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Shiva_temples_Dhakeshwari_Mandir_2_by_Ragib_Hasan.jpg/1024px-Shiva_temples_Dhakeshwari_Mandir_2_by_Ragib_Hasan.jpg",
+              GestureDetector(
+                onTap: (){
+                  showImageViewer(context, Image.network('https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Shiva_temples_Dhakeshwari_Mandir_2_by_Ragib_Hasan.jpg/1024px-Shiva_temples_Dhakeshwari_Mandir_2_by_Ragib_Hasan.jpg').image,
+                      swipeDismissible: true);
+                },
+                child: SizedBox(
+                  width: width,
+                  height: height / 5,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator()),
+                    errorWidget: (context, url, error) =>
+                    const Icon(Icons.error),
+                    imageUrl:
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Shiva_temples_Dhakeshwari_Mandir_2_by_Ragib_Hasan.jpg/1024px-Shiva_temples_Dhakeshwari_Mandir_2_by_Ragib_Hasan.jpg",
+                  ),
                 ),
               ),
               const SizedBox(height: 8.0),

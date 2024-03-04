@@ -29,7 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: rightOnTap != null?MainAxisAlignment.spaceBetween : MainAxisAlignment.start,
+        mainAxisAlignment: rightOnTap == null && isBack == false?MainAxisAlignment.center:(rightOnTap != null?MainAxisAlignment.spaceBetween : MainAxisAlignment.start),
         children: [
           isBack?IconButton(onPressed: onTap ?? (){
             Get.back();

@@ -102,6 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       const SizedBox(height: 5),
                       CustomTextField(
                         hintText: "Enter Number",
+                        textInputType: TextInputType.number,
                         validator: (phone) {
                           if (logic.phoneController.text == "") {
                             return "Please enter valid Phone Number";
@@ -151,7 +152,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         hintText: "Confirm Password",
                         validator: (conPassword) {
-                          if (logic.confirmPasswordRController.text ==
+                          print("${logic.confirmPasswordRController.text}" "${logic.passwordRController.text}");
+                          if (logic.confirmPasswordRController.text !=
                               logic.passwordRController.text) {
                             return "Password do NOT match";
                           } else {

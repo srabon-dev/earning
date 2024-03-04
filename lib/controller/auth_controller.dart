@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earning/core/route/app_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -74,7 +72,10 @@ class AuthController extends GetxController {
           firestore.collection('user').doc(value.user?.uid).set({
             'name': nameController.text,
             'phone': phoneController.text,
-            'email': emailRController.text.trim()
+            'email': emailRController.text.trim(),
+            'isVerified': false,
+            'balance': 0,
+            'image': "",
           }).then((value) {
             isLoading = false;
             update();

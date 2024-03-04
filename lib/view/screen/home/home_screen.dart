@@ -1,4 +1,5 @@
 import 'package:earning/controller/home_controller.dart';
+import 'package:earning/view/screen/home/widget/drawer_widget.dart';
 import 'package:earning/view/widget/post/post_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
         init: HomeController(),
         builder: (logic) {
           return Scaffold(
-            appBar: const HomeAppBar(),
+            key: scaffoldKey,
+            appBar: HomeAppBar(scaffoldKey: scaffoldKey),
+            drawer: const HomeDrawer(),
             body: Column(
               children: [
                 const HomeCreatePost(),
