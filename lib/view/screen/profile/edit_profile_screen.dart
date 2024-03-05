@@ -100,31 +100,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                     const SizedBox(height: 5),
 
-                    //Email TextField ---------------------------------
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Email",
-                          style: Theme.of(context).textTheme.titleLarge,
-                        )),
-                    const SizedBox(height: 5),
-                    CustomTextField(
-                      hintText: "Enter Email",
-                      validator: (email) {
-                        final bool emailValid = RegExp(
-                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(email);
-                        if (emailValid) {
-                          return null;
-                        } else {
-                          return "Please Enter Valid Email Address";
-                        }
-                      },
-                      controller: logic.emailController,
-                      prefixIcon: Icons.email_outlined,
-                    ),
-                    const SizedBox(height: 12),
-
                     //Phone TextField ----------------------------------
                     Align(
                         alignment: Alignment.centerLeft,

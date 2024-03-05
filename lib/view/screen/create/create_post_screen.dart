@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_constants.dart';
+import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/create_post_controller.dart';
 import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
 import 'package:earning/view/widget/button/custom_button.dart';
@@ -56,14 +57,13 @@ class CreatePostScreen extends StatelessWidget {
                                               const Center(child: CircularProgressIndicator()),
                                           errorWidget: (context, url, error) =>
                                               const Center(child: Icon(Icons.error)),
-                                          imageUrl: logic.userModel.image!): Image.asset(AppConstants.userImage,fit: BoxFit.cover,),
+                                          imageUrl: logic.userModel.image!): Image.asset(AppImages.profile,fit: BoxFit.cover,),
                                     ),
                                   ),
                                   const SizedBox(
                                     width: 5,
                                   ),
-                                  Text(
-                                    "Srabon Bapari",
+                                  Text(logic.userModel.name??"",
                                     style: Theme.of(context).textTheme.titleMedium,
                                   ),
                                   const SizedBox(width: 5),
@@ -79,9 +79,9 @@ class CreatePostScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 8.0,),
                         TextFormField(
-                          maxLines: 6,
-                          minLines: 2,
-                          maxLength: 800,
+                          maxLines: 10,
+                          minLines: 5,
+                          maxLength: 1000,
                           controller: logic.descriptionController,
                           decoration: InputDecoration(
                             hintText: "Write interesting content, get more likes and earn more...",
@@ -103,7 +103,7 @@ class CreatePostScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // SizedBox(height: 12,),
+                        const SizedBox(height: 8.0,),
                         GestureDetector(
                           onTap: (){
                             logic.showCameraPickDialog(context);
@@ -128,7 +128,7 @@ class CreatePostScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 12,),
-                        logic.updateLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Post", onTap: (){
+                        logic.isLoading? Center(child: CircularProgressIndicator(),): CustomButton(text: "Post", onTap: (){
                           if(logic.descriptionController.text != "" && logic.postImage != null){
                             logic.post();
                           }else{

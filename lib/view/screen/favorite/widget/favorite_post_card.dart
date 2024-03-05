@@ -2,27 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_images.dart';
-import 'package:earning/core/route/app_route.dart';
 import 'package:earning/model/post_model.dart';
 import 'package:earning/view/widget/loading/custom_loading.dart';
 import 'package:easy_image_viewer/easy_image_viewer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:like_button/like_button.dart';
 import 'package:readmore/readmore.dart';
 
-class PostCard extends StatefulWidget {
-  const PostCard({super.key, this.isMyPost = false, this.postModel});
-  final bool isMyPost;
+/*class FavoritePostCard extends StatefulWidget {
+  const FavoritePostCard({super.key, this.postModel});
   final PostModel? postModel;
-
   @override
-  State<PostCard> createState() => _PostCardState();
+  State<FavoritePostCard> createState() => _FavoritePostCardState();
 }
 
-class _PostCardState extends State<PostCard> {
+class _FavoritePostCardState extends State<FavoritePostCard> {
+
   bool like = false;
   @override
   void initState() {
@@ -46,7 +43,7 @@ class _PostCardState extends State<PostCard> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Card(
-        elevation: 1,
+        elevation: 10,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
             side: BorderSide(color: isDarkMode ? AppColors.whiteColor : AppColors.blackColor)),
@@ -75,7 +72,7 @@ class _PostCardState extends State<PostCard> {
                             child: widget.postModel?.profileImage != '' && widget.postModel?.profileImage != null? CachedNetworkImage(
                                 fit: BoxFit.cover,
                                 placeholder: (context, url) =>
-                                    const CustomLoading(width: 40, height: 40),
+                                const CustomLoading(width: 40, height: 40),
                                 errorWidget: (context, url, error) =>
                                 const Icon(Iconsax.profile_circle,size: 35,),
                                 imageUrl:widget.postModel!.profileImage!):Image.asset(AppImages.profile,fit: BoxFit.cover,),
@@ -91,31 +88,17 @@ class _PostCardState extends State<PostCard> {
                         const Icon(Iconsax.verify,size: 18,color: AppColors.greenColor,),
                       ],
                     ),
-                    Row(
-                      children: [
-                        widget.isMyPost?Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 8.0),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: isDarkMode? AppColors.whiteColor.withOpacity(0.4): AppColors.blackColor.withOpacity(0.1),
-                          ),
-                          child: Center(child: widget.postModel?.isApproved?? false?const Text("Active",style: TextStyle(color: AppColors.greenColor),):const Text("Pending",style: TextStyle(color: AppColors.redColor),),),
-                        ):const SizedBox(),
-                        PopupMenuButton<String>(
-                          onSelected: (String choice){
-                            if(choice == "Edit"){
-                              Get.toNamed(AppRoute.editPostScreen, arguments: widget.postModel?.id);
-                            }
-                          },
-                          itemBuilder: (BuildContext context)=>[
-                            PopupMenuItem<String>(
-                                value: widget.postModel?.email == FirebaseAuth.instance.currentUser?.email?"Edit":"Report",
-                                child: ListTile(
-                                  title: Text(widget.postModel?.email == FirebaseAuth.instance.currentUser?.email?"Edit":"Report"),
-                                  leading: Icon(widget.postModel?.email == FirebaseAuth.instance.currentUser?.email?Iconsax.edit:Iconsax.receipt),
-                                )),
-                          ],
-                        ),
+                    PopupMenuButton<String>(
+                      onSelected: (String choice){
+
+                      },
+                      itemBuilder: (BuildContext context)=>[
+                        const PopupMenuItem(
+                            value: "Remove Favorite",
+                            child: ListTile(
+                              title: Text("Remove Favorite"),
+                              leading: Icon(Iconsax.lovely5),
+                            )),
                       ],
                     ),
                   ],
@@ -163,54 +146,46 @@ class _PostCardState extends State<PostCard> {
 
               //Live Button Section
               StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection('post').doc(widget.postModel?.id??"").collection('like').where('like',isEqualTo: true).snapshots(),
-                builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
-                  if (snapshot.hasError) {
+                  stream: FirebaseFirestore.instance.collection('post').doc(widget.postModel?.id??"").collection('like').where('like',isEqualTo: true).snapshots(),
+                  builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
+                    if (snapshot.hasError) {
 
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+
+                    }
+                    return LikeButton(
+                      size: 50,
+                      circleColor: const CircleColor(
+                        start: Color(0xffe320e0),
+                        end: Color(0xffee0d70),
+                      ),
+                      isLiked: like,
+                      onTap: (bool isLiked) async {
+                        await FirebaseFirestore.instance.collection("post").doc(widget.postModel?.id??"").collection('like').doc(FirebaseAuth.instance.currentUser?.uid??"").set({
+                          'like': !isLiked,
+                          'id' : FirebaseAuth.instance.currentUser?.uid??"",
+                        });
+                        like = await getLike();
+                        setState(() {
+
+                        });
+                        return like;
+                      },
+                      bubblesColor: const BubblesColor(
+                        dotPrimaryColor: Color(0xffec8119),
+                        dotSecondaryColor: Color(0xff1cdc7c),
+                      ),
+                      likeBuilder: (bool isLiked){
+                        return Icon(
+                          Iconsax.lovely,
+                          color: like? Colors.red : Colors.grey,
+                          size: 35,
+                        );
+                      },
+                      likeCount: snapshot.data?.docs.length,
+                    );
                   }
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-
-                  }
-                  return LikeButton(
-                    size: 50,
-                    circleColor: const CircleColor(
-                      start: Color(0xffe320e0),
-                      end: Color(0xffee0d70),
-                    ),
-                    isLiked: like,
-                    onTap: (bool isLiked) async {
-                      await FirebaseFirestore.instance.collection("post").doc(widget.postModel?.id??"").collection('like').doc(FirebaseAuth.instance.currentUser?.uid??"").set({
-                        'like': !isLiked,
-                        'id' : FirebaseAuth.instance.currentUser?.uid??"",
-                      });
-                      final String docId = '${FirebaseAuth.instance.currentUser?.uid}${DateTime.now().microsecondsSinceEpoch}';
-                      await FirebaseFirestore.instance.collection('transaction').doc(docId).set({
-                        'id': docId,
-                        'postEmail': widget.postModel?.email,
-                        'postName': widget.postModel?.name,
-                        'likedEmail': FirebaseAuth.instance.currentUser?.email,
-                        'balance': 0.5
-                      });
-                      like = await getLike();
-                      setState(() {
-
-                      });
-                      return like;
-                    },
-                    bubblesColor: const BubblesColor(
-                      dotPrimaryColor: Color(0xffec8119),
-                      dotSecondaryColor: Color(0xff1cdc7c),
-                    ),
-                    likeBuilder: (bool isLiked){
-                      return Icon(
-                        Iconsax.lovely,
-                        color: like? Colors.red : Colors.grey,
-                        size: 35,
-                      );
-                    },
-                    likeCount: snapshot.data?.docs.length,
-                  );
-                }
               ),
             ],
           ),
@@ -222,4 +197,4 @@ class _PostCardState extends State<PostCard> {
     DocumentSnapshot<Map<String, dynamic>> doc= await FirebaseFirestore.instance.collection("post").doc(widget.postModel?.id??"").collection('like').doc(FirebaseAuth.instance.currentUser?.uid??"").get();
     return doc.data()?['like']?? false;
   }
-}
+}*/

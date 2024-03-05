@@ -12,7 +12,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class CreatePostController extends GetxController{
+class EditPostController extends GetxController{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -20,8 +20,7 @@ class CreatePostController extends GetxController{
   TextEditingController descriptionController = TextEditingController();
   UserModel userModel = UserModel();
   File? postImage;
-  String imageURL = '';
-
+  String imageURL = "";
 
   bool isLoading = false;
   Future<void> getUserDetails() async {
@@ -41,6 +40,7 @@ class CreatePostController extends GetxController{
       update();
     }
   }
+
 
   void openPhotoGallery() async{
     try{
@@ -95,21 +95,34 @@ class CreatePostController extends GetxController{
       );
     });
   }
-  bool updateLoading = false;
 
-  Future<void> post() async{
+  Future<void> getPostDetails({required String docId}) async{
+    try{
+      firestore.collection('post').doc(docId).get().then((value){
+        imageURL = value.data()?['postImage'];
+        descriptionController = TextEditingController(text: value.data()?['desc']);
+        update();
+      }).onError((error, stackTrace){
+        log("Error By Firestore ${error.toString()}");
+      });
+    }catch(error){
+      log("Error By Firestore ${error.toString()}");
+    }
+  }
+
+  bool updateLoading = false;
+  Future<void> updatePost({required String docId}) async{
     try{
       updateLoading = true;
       update();
-      print("Verification Post ${userModel.isVerified}");
       if(userModel.isVerified??false){
         if(postImage != null){
           Reference refBox = storage.ref().child("post/${firebaseAuth.currentUser?.uid}/${DateTime.now().microsecondsSinceEpoch}${postImage?.path.split('/').last}");
           refBox.putFile(postImage!).whenComplete(() async {
             imageURL = await refBox.getDownloadURL();
             update();
-            final String docId = '${firebaseAuth.currentUser?.uid}${DateTime.now().microsecondsSinceEpoch}';
-            firestore.collection('post').doc(docId).set({
+
+            firestore.collection('post').doc(docId).update({
               'id': docId,
               'email': firebaseAuth.currentUser?.email,
               'name': userModel.name,
@@ -129,20 +142,39 @@ class CreatePostController extends GetxController{
             }).timeout(const Duration(seconds: 10));
           });
         }else{
-          Fluttertoast.showToast(msg: "Please upload image");
+          firestore.collection('post').doc(docId).update({
+            'id': docId,
+            'email': firebaseAuth.currentUser?.email,
+            'name': userModel.name,
+            'isApproved': false,
+            'profileImage': userModel.image,
+            'desc': descriptionController.text,
+          }).then((value){
+            updateLoading = false;
+            update();
+            Fluttertoast.showToast(msg: "Post Successful");
+            Get.offAndToNamed(AppRoute.navScreen);
+          }).onError((error, stackTrace){
+            log("Error By Firestore ${error.toString()}");
+            updateLoading = false;
+            update();
+          }).timeout(const Duration(seconds: 10));
         }
       }else{
         Fluttertoast.showToast(msg: "you are not verified person Please first verify your account!");
-        Get.offAndToNamed(AppRoute.verifyScreen);
+        Get.toNamed(AppRoute.verifyScreen);
       }
     }catch(error){
       Fluttertoast.showToast(msg: "Post Unsuccessful");
     }
   }
 
-  @override
-  void onInit() {
-    getUserDetails();
-    super.onInit();
+@override
+  void onReady() {
+    Future.wait([
+    getUserDetails(),
+    getPostDetails(docId: Get.arguments),
+    ]);
+    super.onReady();
   }
 }

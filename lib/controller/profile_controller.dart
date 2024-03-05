@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earning/constant/app_colors.dart';
-import 'package:earning/constant/app_constants.dart';
 import 'package:earning/model/user_model.dart';
 import 'package:earning/view/widget/button/custom_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -19,7 +17,6 @@ class ProfileController extends GetxController {
   final FirebaseStorage storage = FirebaseStorage.instance;
 
   TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   File? imagePhotoFile;
   String imageURL = '';
@@ -34,15 +31,7 @@ class ProfileController extends GetxController {
         userModel = UserModel.fromJson(value.data() ?? {});
         update();
         nameController = TextEditingController(text: userModel.name);
-        emailController = TextEditingController(text: userModel.email);
         phoneController = TextEditingController(text: userModel.phone);
-        update();
-        final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-        sharedPreferences.setString(AppConstants.userName, userModel.name??"");
-        sharedPreferences.setString(AppConstants.userEmail, userModel.email??"");
-        sharedPreferences.setString(AppConstants.userImage, userModel.image??"");
-        sharedPreferences.setBool(AppConstants.userVerified, userModel.isVerified??false);
-        sharedPreferences.setBool(AppConstants.userPayment, userModel.isPayment??false);
         isLoading = false;
         update();
       }).onError((error, stackTrace) {
@@ -122,7 +111,6 @@ class ProfileController extends GetxController {
           imageURL = await refBox.getDownloadURL();
           update();
           await firestore.collection('user').doc(firebaseAuth.currentUser?.uid).update({
-            'email': emailController.text.trim(),
             'name': nameController.text,
             'phone': phoneController.text,
             'image': imageURL
@@ -139,7 +127,6 @@ class ProfileController extends GetxController {
         });
       }else{
         await firestore.collection('user').doc(firebaseAuth.currentUser?.uid).update({
-          'email': emailController.text.trim(),
           'name': nameController.text,
           'phone': phoneController.text,
         }).then((value){

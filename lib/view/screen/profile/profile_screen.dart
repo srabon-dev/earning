@@ -4,6 +4,7 @@ import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/profile_controller.dart';
 import 'package:earning/core/route/app_route.dart';
 import 'package:earning/view/widget/button/custom_button.dart';
+import 'package:earning/view/widget/loading/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -40,9 +41,9 @@ class ProfileScreen extends StatelessWidget {
                       child: CachedNetworkImage(
                         fit: BoxFit.cover,
                         placeholder: (context, url) =>
-                        Center(child: const CircularProgressIndicator()),
+                            const CustomLoading(width: 150, height: 150),
                         errorWidget: (context, url, error) =>
-                        Center(child: const Icon(Icons.error)),
+                        const Icon(Iconsax.profile_circle,size: 35,),
                         imageUrl: logic.userModel.image!,
                       ),
                     ): Image.asset(AppImages.profile,fit: BoxFit.cover,),

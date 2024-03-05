@@ -66,8 +66,7 @@ class AuthController extends GetxController {
           .createUserWithEmailAndPassword(
         email: emailRController.text.trim(),
         password: passwordRController.text.trim(),
-      )
-          .then((value) {
+      ).then((value) {
         if (value.user?.uid != null) {
           firestore.collection('user').doc(value.user?.uid).set({
             'name': nameController.text,
@@ -80,7 +79,7 @@ class AuthController extends GetxController {
             isLoading = false;
             update();
             Fluttertoast.showToast(msg: "Account Create Successful");
-            Get.offAndToNamed(AppRoute.navScreen);
+            Get.offAndToNamed(AppRoute.verifyScreen);
           }).onError((error, stackTrace) {
             isLoading = false;
             update();

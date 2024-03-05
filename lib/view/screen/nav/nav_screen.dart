@@ -12,8 +12,9 @@ class NavScreen extends StatelessWidget {
     return GetBuilder<NavController>(
       init: NavController(),
       builder: (logic) {
+        print(logic.userModel.isVerified);
         return Scaffold(
-          floatingActionButton: FloatingActionButton.extended(
+          floatingActionButton: logic.isLoading?const SizedBox(): logic.userModel.isVerified??false?null:FloatingActionButton.extended(
             label: const Center(child: Text("Verify Account")),
             onPressed: () {
               Get.toNamed(AppRoute.verifyScreen);
@@ -31,8 +32,8 @@ class NavScreen extends StatelessWidget {
             animationDuration: const Duration(milliseconds: 400),
             destinations: const [
               NavigationDestination(icon: Icon(Iconsax.home), label: "Home"),
-              NavigationDestination(icon: Icon(Iconsax.video), label: "My Post"),
-              NavigationDestination(icon: Icon(Iconsax.transaction_minus), label: "My Earning"),
+              NavigationDestination(icon: Icon(Iconsax.video), label: "Post"),
+              NavigationDestination(icon: Icon(Iconsax.transaction_minus), label: "Balance"),
               NavigationDestination(icon: Icon(Iconsax.profile_circle), label: "Profile"),
             ],
           ),

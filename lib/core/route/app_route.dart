@@ -3,6 +3,7 @@ import 'package:earning/view/screen/auth/login/login_screen.dart';
 import 'package:earning/view/screen/auth/register/register_screen.dart';
 import 'package:earning/view/screen/create/create_post_screen.dart';
 import 'package:earning/view/screen/earning/earning_screen.dart';
+import 'package:earning/view/screen/edit/edit_post_screen.dart';
 import 'package:earning/view/screen/favorite/favorite_screen.dart';
 import 'package:earning/view/screen/home/home_screen.dart';
 import 'package:earning/view/screen/nav/nav_screen.dart';
@@ -38,7 +39,8 @@ class AppRoute{
   static const String createPostScreen = "/create_post_screen";
   static const String verifyScreen = "/verify_screen";
   static const String editProfileScreen = "/edit_profile_screen";
-  static const String favoriteScreen = "/favorite_screen";
+  static const String editPostScreen = "/edit_post_screen";
+  // static const String favoriteScreen = "/favorite_screen";
 
   //Optional
   static const String privacyPolicy = "/privacy_policy";
@@ -59,7 +61,8 @@ class AppRoute{
     GetPage(name: createPostScreen, page: () => const CreatePostScreen()),
     GetPage(name: verifyScreen, page: () => const VerifyScreen()),
     GetPage(name: editProfileScreen, page: () => const EditProfileScreen()),
-    GetPage(name: favoriteScreen, page: () => const FavoriteScreen()),
+    GetPage(name: editPostScreen, page: () => const EditPostScreen()),
+    // GetPage(name: favoriteScreen, page: () => const FavoriteScreen()),
     GetPage(name: privacyPolicy, page: () => const PrivacyPolicy()),
     GetPage(name: termsOfService, page: () => const TermsOfService()),
     GetPage(name: aboutUs, page: () => const AboutUs()),

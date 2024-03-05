@@ -3,7 +3,6 @@ class UserModel {
   final String? email;
   final String? image;
   final bool? isVerified;
-  final bool? isPayment;
   final String? name;
   final String? phone;
 
@@ -12,7 +11,6 @@ class UserModel {
     this.email,
     this.image,
     this.isVerified,
-    this.isPayment,
     this.name,
     this.phone,
   });
@@ -22,7 +20,6 @@ class UserModel {
     email: json["email"],
     image: json["image"],
     isVerified: json["isVerified"],
-    isPayment: json["isPayment"],
     name: json["name"],
     phone: json["phone"],
   );
@@ -32,7 +29,6 @@ class UserModel {
     "email": email,
     "image": image,
     "isVerified": isVerified,
-    "isPayment": isPayment,
     "name": name,
     "phone": phone,
   };

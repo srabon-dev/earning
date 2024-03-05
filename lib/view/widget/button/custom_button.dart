@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
+
     return InkWell(
       onTap: onTap,
       child: Container(

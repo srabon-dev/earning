@@ -1,6 +1,8 @@
+/*
+import 'package:earning/model/post_model.dart';
 import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
-import 'package:earning/view/widget/post/post_card.dart';
 import 'package:flutter/material.dart';
+import 'widget/favorite_post_card.dart';
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -9,7 +11,7 @@ class FavoriteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(name: "Favorite",isBack: true,),
+        appBar: const CustomAppBar(name: "Favorite",isBack: true,),
         body: ListView.separated(
           itemCount: 5,
           physics: const BouncingScrollPhysics(),
@@ -18,10 +20,11 @@ class FavoriteScreen extends StatelessWidget {
             return const SizedBox();
           },
           itemBuilder: (BuildContext context, int index) {
-            return const PostCard(isFavorite: true,);
+            return const FavoritePostCard(postModel: PostModel(),);
           },
         ),
       ),
     );
   }
 }
+*/
