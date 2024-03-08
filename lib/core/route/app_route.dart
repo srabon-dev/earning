@@ -4,11 +4,11 @@ import 'package:earning/view/screen/auth/register/register_screen.dart';
 import 'package:earning/view/screen/create/create_post_screen.dart';
 import 'package:earning/view/screen/earning/earning_screen.dart';
 import 'package:earning/view/screen/edit/edit_post_screen.dart';
-import 'package:earning/view/screen/favorite/favorite_screen.dart';
 import 'package:earning/view/screen/home/home_screen.dart';
+import 'package:earning/view/screen/languages/languages_screen.dart';
+import 'package:earning/view/screen/message/message_screen.dart';
 import 'package:earning/view/screen/nav/nav_screen.dart';
 import 'package:earning/view/screen/optional/about_us.dart';
-import 'package:earning/view/screen/optional/contact_us.dart';
 import 'package:earning/view/screen/optional/privacy_policy.dart';
 import 'package:earning/view/screen/optional/terms_of_service.dart';
 import 'package:earning/view/screen/post/my_post_screen.dart';
@@ -16,6 +16,7 @@ import 'package:earning/view/screen/profile/edit_profile_screen.dart';
 import 'package:earning/view/screen/profile/profile_screen.dart';
 import 'package:earning/view/screen/splash/splash_screen.dart';
 import 'package:earning/view/screen/verify/verify_screen.dart';
+import 'package:earning/view/screen/withdraw/withdraw_screen.dart';
 import 'package:get/get.dart';
 
 class AppRoute{
@@ -40,13 +41,15 @@ class AppRoute{
   static const String verifyScreen = "/verify_screen";
   static const String editProfileScreen = "/edit_profile_screen";
   static const String editPostScreen = "/edit_post_screen";
+  static const String withdrawScreen = "/withdraw_screen";
+  static const String messageScreen = "/message_screen";
+  static const String languagesScreen = "/languages_screen";
   // static const String favoriteScreen = "/favorite_screen";
 
   //Optional
   static const String privacyPolicy = "/privacy_policy";
   static const String termsOfService = "/terms_of_service";
   static const String aboutUs = "/about_us";
-  static const String contactUs = "/contact_us";
 
   static List<GetPage> routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -62,10 +65,12 @@ class AppRoute{
     GetPage(name: verifyScreen, page: () => const VerifyScreen()),
     GetPage(name: editProfileScreen, page: () => const EditProfileScreen()),
     GetPage(name: editPostScreen, page: () => const EditPostScreen()),
+    GetPage(name: withdrawScreen, page: () => const WithdrawScreen()),
+    GetPage(name: messageScreen, page: () => const MessageScreen()),
+    GetPage(name: languagesScreen, page: () => const LanguagesScreen()),
     // GetPage(name: favoriteScreen, page: () => const FavoriteScreen()),
-    GetPage(name: privacyPolicy, page: () => const PrivacyPolicy()),
-    GetPage(name: termsOfService, page: () => const TermsOfService()),
+    GetPage(name: privacyPolicy, page: () =>  PrivacyPolicy()),
+    GetPage(name: termsOfService, page: () =>  TermsOfService()),
     GetPage(name: aboutUs, page: () => const AboutUs()),
-    GetPage(name: contactUs, page: () => const ContactUs()),
   ];
 }

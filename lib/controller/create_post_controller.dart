@@ -21,6 +21,7 @@ class CreatePostController extends GetxController{
   UserModel userModel = UserModel();
   File? postImage;
   String imageURL = '';
+  int? todayPost = 0;
 
 
   bool isLoading = false;
@@ -95,13 +96,32 @@ class CreatePostController extends GetxController{
       );
     });
   }
-  bool updateLoading = false;
 
+  Future<void> getPostLimit() async{
+    try{
+      DateTime now = DateTime.now();
+      DateTime startOfToday = DateTime(now.year, now.month, now.day);
+      DateTime endOfToday = DateTime(now.year, now.month, now.day, 23, 59, 59, 999);
+      await firestore.collection('post')
+          .where('email', isEqualTo: firebaseAuth.currentUser?.email)
+          .where('createdAt', isGreaterThanOrEqualTo: startOfToday)
+          .where('createdAt', isLessThanOrEqualTo: endOfToday)
+          .get().then((value){
+            todayPost = value.docs.length;
+            update();
+      }).onError((error, stackTrace){
+        log(error.toString());
+      });
+    }catch(error){
+      log(error.toString());
+    }
+  }
+
+  bool updateLoading = false;
   Future<void> post() async{
     try{
       updateLoading = true;
       update();
-      print("Verification Post ${userModel.isVerified}");
       if(userModel.isVerified??false){
         if(postImage != null){
           Reference refBox = storage.ref().child("post/${firebaseAuth.currentUser?.uid}/${DateTime.now().microsecondsSinceEpoch}${postImage?.path.split('/').last}");
@@ -112,11 +132,13 @@ class CreatePostController extends GetxController{
             firestore.collection('post').doc(docId).set({
               'id': docId,
               'email': firebaseAuth.currentUser?.email,
+              'uid': firebaseAuth.currentUser?.uid,
               'name': userModel.name,
               'isApproved': false,
               'profileImage': userModel.image,
               'desc': descriptionController.text,
               'postImage': imageURL,
+              'createdAt': FieldValue.serverTimestamp(),
             }).then((value){
               updateLoading = false;
               update();
@@ -143,6 +165,7 @@ class CreatePostController extends GetxController{
   @override
   void onInit() {
     getUserDetails();
+    getPostLimit();
     super.onInit();
   }
 }

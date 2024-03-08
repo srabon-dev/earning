@@ -37,7 +37,7 @@ class AuthController extends GetxController {
           isLoading = false;
           update();
           Fluttertoast.showToast(msg: "Login Successful");
-          Get.offAndToNamed(AppRoute.navScreen);
+          Get.offAllNamed(AppRoute.navScreen);
         } else {
           isLoading = false;
           update();
@@ -70,16 +70,18 @@ class AuthController extends GetxController {
         if (value.user?.uid != null) {
           firestore.collection('user').doc(value.user?.uid).set({
             'name': nameController.text,
-            'phone': phoneController.text,
+            'phone': '+88${phoneController.text}',
             'email': emailRController.text.trim(),
             'isVerified': false,
-            'balance': 0,
+            'verificationStatus': "",
+            'balance': 10,
             'image': "",
+            'createdAt': FieldValue.serverTimestamp(),
           }).then((value) {
             isLoading = false;
             update();
             Fluttertoast.showToast(msg: "Account Create Successful");
-            Get.offAndToNamed(AppRoute.verifyScreen);
+            Get.offAllNamed(AppRoute.verifyScreen);
           }).onError((error, stackTrace) {
             isLoading = false;
             update();

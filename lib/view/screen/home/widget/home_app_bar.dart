@@ -1,9 +1,8 @@
 import 'dart:developer';
 import 'package:earning/constant/app_constants.dart';
-import 'package:earning/core/route/app_route.dart';
+import 'package:earning/view/screen/auth/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
@@ -34,12 +33,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
           }, icon: const Icon(Iconsax.menu,size: 28,),),
           const Text(AppConstants.appName,style: TextStyle(fontWeight: FontWeight.w800,fontSize: 32,fontFamily: "Bold"),),
           IconButton(onPressed: () async {
-            /*await FirebaseAuth.instance.signOut().then((value){
-              Get.offAndToNamed(AppRoute.loginScreen);
-            }).onError((error, stackTrace){
-              log(error.toString());
-            });*/
-          }, icon: const Icon(Iconsax.notification,size: 28,),),
+            await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LoginScreen()),(route) => false));
+          }, icon: const Icon(Iconsax.logout,size: 28,),),
         ],
       ),
     );

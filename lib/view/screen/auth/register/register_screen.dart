@@ -103,11 +103,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         hintText: "Enter Number",
                         textInputType: TextInputType.number,
-                        validator: (phone) {
-                          if (logic.phoneController.text == "") {
-                            return "Please enter valid Phone Number";
-                          } else {
+                        validator: (value){
+                          if(RegExp(r'^01[3-9][0-9]{8}$').hasMatch(value ?? '')){
                             return null;
+                          }else{
+                            return "Please enter valid Phone number!";
                           }
                         },
                         controller: logic.phoneController,
@@ -152,7 +152,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       CustomTextField(
                         hintText: "Confirm Password",
                         validator: (conPassword) {
-                          print("${logic.confirmPasswordRController.text}" "${logic.passwordRController.text}");
                           if (logic.confirmPasswordRController.text !=
                               logic.passwordRController.text) {
                             return "Password do NOT match";
@@ -191,6 +190,32 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                           child: Center(child: Text("Login",style: Theme.of(context).textTheme.titleMedium,),),
                         ),
+                      ),
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: (){
+                              Get.toNamed(AppRoute.termsOfService);
+                            },
+                            child: const Text("Terms of Ues",style: TextStyle(
+                              color: AppColors.greenColor,
+                            )),
+                          ),
+                          const SizedBox(width: 5.0),
+                          const Text("And"),
+                          const SizedBox(width: 5.0),
+                          GestureDetector(
+                            onTap: (){
+                              Get.toNamed(AppRoute.privacyPolicy);
+                            },
+                            child: const Text("Privacy Policy",style: TextStyle(
+                              color: AppColors.greenColor,
+                            )),
+                          ),
+                        ],
                       ),
                     ],
                   ),

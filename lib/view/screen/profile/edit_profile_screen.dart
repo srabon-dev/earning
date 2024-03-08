@@ -110,11 +110,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     const SizedBox(height: 5),
                     CustomTextField(
                       hintText: "Enter Number",
-                      validator: (phone) {
-                        if (logic.phoneController.text == "") {
-                          return "Please enter valid Phone Number";
-                        } else {
+                      validator: (value){
+                        if(RegExp(r'^01[3-9][0-9]{8}$').hasMatch(value ?? '')){
                           return null;
+                        }else{
+                          return "Please enter valid Phone number!";
                         }
                       },
                       controller: logic.phoneController,

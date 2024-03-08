@@ -6,11 +6,11 @@ class TDrawerTheme{
 
   static DrawerThemeData lightDrawerTheme= DrawerThemeData(
     elevation: 20,
-    backgroundColor: AppColors.whiteColor.withOpacity(0.5),
+    backgroundColor: AppColors.whiteColor.withOpacity(0.7),
   );
 
   static DrawerThemeData darkDrawerTheme= DrawerThemeData(
     elevation: 20,
-    backgroundColor: AppColors.blackColor.withOpacity(0.5),
+    backgroundColor: AppColors.blackColor.withOpacity(0.7),
   );
 }

@@ -1,11 +1,17 @@
+import 'package:flutter/material.dart';
+
 class AppConstants{
   static const String appName = "Opex";
 
-  //SharedPreferences
+  static const String privacyUrl = "https://opex.viewearningbd.com/privacy-policy.html";
+  static const String termsUrl = "https://opex.viewearningbd.com/terms-of-service.html";
 
-  static const String userName = "name";
-  static const String userEmail = "email";
-  static const String userImage = "image";
-  static const String userVerified = "verify";
-  static const String userPayment = "payment";
+  static const String languageCode = "languagesCode";
+  static const String countryCode = "countryCode";
+
+  static const List<String> languagesList = ['en', 'bn'];
+  static const List<Locale> localesList = [
+    Locale('en', 'US'),
+    Locale('bn', 'BD'),
+  ];
 }

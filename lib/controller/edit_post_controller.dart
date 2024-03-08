@@ -125,15 +125,17 @@ class EditPostController extends GetxController{
             firestore.collection('post').doc(docId).update({
               'id': docId,
               'email': firebaseAuth.currentUser?.email,
+              'uid': firebaseAuth.currentUser?.uid,
               'name': userModel.name,
               'isApproved': false,
               'profileImage': userModel.image,
               'desc': descriptionController.text,
               'postImage': imageURL,
+              'createdAt': FieldValue.serverTimestamp(),
             }).then((value){
               updateLoading = false;
               update();
-              Fluttertoast.showToast(msg: "Post Successful");
+              Fluttertoast.showToast(msg: "Post Update Successful");
               Get.offAndToNamed(AppRoute.navScreen);
             }).onError((error, stackTrace){
               log("Error By Firestore ${error.toString()}");
@@ -145,14 +147,16 @@ class EditPostController extends GetxController{
           firestore.collection('post').doc(docId).update({
             'id': docId,
             'email': firebaseAuth.currentUser?.email,
+            'uid': firebaseAuth.currentUser?.uid,
             'name': userModel.name,
             'isApproved': false,
             'profileImage': userModel.image,
             'desc': descriptionController.text,
+            'createdAt': FieldValue.serverTimestamp(),
           }).then((value){
             updateLoading = false;
             update();
-            Fluttertoast.showToast(msg: "Post Successful");
+            Fluttertoast.showToast(msg: "Post Update Successful");
             Get.offAndToNamed(AppRoute.navScreen);
           }).onError((error, stackTrace){
             log("Error By Firestore ${error.toString()}");

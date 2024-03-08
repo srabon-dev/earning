@@ -1,9 +1,12 @@
+import 'package:earning/constant/app_constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'core/dependency/dependency_injection.dart';
 import 'core/route/app_route.dart';
+import 'utils/languages/localizations_delegate.dart';
 import 'utils/theme/theme.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,15 +15,7 @@ Future<void> main() async{
   DependencyInjection.init();
 
   // initialize Firebase
-  await Firebase.initializeApp(options: FirebaseOptions(
-      apiKey: "AIzaSyAlbv9NGF1b8qPwfQBk_sEvDBsGbzaTju0",
-      authDomain: "earning-5ed58.firebaseapp.com",
-      projectId: "earning-5ed58",
-      storageBucket: "earning-5ed58.appspot.com",
-      messagingSenderId: "86670873741",
-      appId: "1:86670873741:web:61916de8afad77a25afec4",
-      measurementId: "G-YE62LZ4SW8"
-  ));
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
@@ -44,6 +39,23 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
+
+      //Languages Section
+      localizationsDelegates: const [
+        TranslationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: AppConstants.localesList,
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocaleLanguage in supportedLocales) {
+          if (supportedLocaleLanguage.languageCode == locale!.languageCode &&
+              supportedLocaleLanguage.countryCode == locale.countryCode) {
+            return supportedLocaleLanguage;
+          }
+        }
+        return supportedLocales.first;
+      },
     );
   }
 }

@@ -112,8 +112,9 @@ class ProfileController extends GetxController {
           update();
           await firestore.collection('user').doc(firebaseAuth.currentUser?.uid).update({
             'name': nameController.text,
-            'phone': phoneController.text,
-            'image': imageURL
+            'phone': '+88${phoneController.text}',
+            'image': imageURL,
+            'createdAt': FieldValue.serverTimestamp(),
           }).then((value){
             updateLoading = false;
             update();
@@ -128,7 +129,8 @@ class ProfileController extends GetxController {
       }else{
         await firestore.collection('user').doc(firebaseAuth.currentUser?.uid).update({
           'name': nameController.text,
-          'phone': phoneController.text,
+          'phone': '+88${phoneController.text}',
+          'createdAt': FieldValue.serverTimestamp(),
         }).then((value){
           updateLoading = false;
           update();

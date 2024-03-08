@@ -74,6 +74,7 @@ class CreatePostScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              Text("Today Total Post: ${logic.todayPost}"),
                             ],
                           ),
                         ),
@@ -127,8 +128,8 @@ class CreatePostScreen extends StatelessWidget {
                             child: const Center(child: Icon(Iconsax.gallery,size: 50,),),
                           ),
                         ),
-                        const SizedBox(height: 12,),
-                        logic.isLoading? Center(child: CircularProgressIndicator(),): CustomButton(text: "Post", onTap: (){
+                        const SizedBox(height: 24,),
+                        logic.updateLoading? const Center(child: CircularProgressIndicator(),): CustomButton(text: "Post", onTap: (){
                           if(logic.descriptionController.text != "" && logic.postImage != null){
                             logic.post();
                           }else{

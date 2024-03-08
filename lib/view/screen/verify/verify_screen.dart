@@ -65,7 +65,7 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("You will get BDT 0.5Tk for each like.",
+                  Text("You will get 1 Coin for each like. and If you like other people's post then you will get 1 coin",
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
@@ -80,7 +80,7 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("You can make one post per day.",
+                  Text("You can make 10 post per day.",
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
@@ -147,14 +147,17 @@ class VerifyScreen extends StatelessWidget {
               Text("Note", style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(width: 5.0),
               Text(
-                "If you provide wrong information your account will be suspended",
+                "If you provide incorrect information, your account will not be accepted and the account from which you will pay will be refunded.",
                 maxLines: 3,
                 style: TextStyle(
+                  fontWeight: FontWeight.w800,
                   color: AppColors.redColor.withOpacity(0.5),
                 ),
               ),
               const SizedBox(height: 24),
-              CustomButton(text: "Start Verification", onTap: () {}),
+              CustomButton(text: "Start Verification", onTap: () {
+
+              }),
               const SizedBox(height: 12),
               CustomButton(
                   text: "Skip",

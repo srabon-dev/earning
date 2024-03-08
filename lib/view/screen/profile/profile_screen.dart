@@ -3,8 +3,10 @@ import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/profile_controller.dart';
 import 'package:earning/core/route/app_route.dart';
+import 'package:earning/view/screen/auth/login/login_screen.dart';
 import 'package:earning/view/widget/button/custom_button.dart';
 import 'package:earning/view/widget/loading/custom_loading.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -22,6 +24,14 @@ class ProfileScreen extends StatelessWidget {
         init: ProfileController(),
         builder: (logic) {
           return Scaffold(
+            floatingActionButton: FloatingActionButton.extended(onPressed: (){
+              Get.toNamed(AppRoute.messageScreen);
+            },label: const Column(
+              children: [
+                Icon(Iconsax.message),
+                Text("Need Support"),
+              ],
+            ),),
             body: logic.isLoading? const Center(child: CircularProgressIndicator()):
             SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 12),
@@ -135,6 +145,7 @@ class ProfileScreen extends StatelessWidget {
                   CustomButton(text: "Edit", onTap: (){
                     Get.toNamed(AppRoute.editProfileScreen);
                   }),
+                  const SizedBox(height: 12,),
                 ],
               ),
             ),

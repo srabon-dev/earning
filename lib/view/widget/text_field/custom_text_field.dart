@@ -5,20 +5,24 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField({super.key,
     required this.hintText,
     this.prefixIcon,
+    this.suffixIcon,
     this.isPassword = false,
     required this.controller,
     this.textInputAction = TextInputAction.next,
     this.validator,
+    this.onSave,
     this.textInputType = TextInputType.text,
   });
 
   final String hintText;
   final IconData? prefixIcon;
+  final IconData? suffixIcon;
   final TextEditingController controller;
   final bool isPassword;
   final TextInputAction textInputAction;
   final FormFieldValidator? validator;
   final TextInputType textInputType;
+  final Function(String? data)? onSave;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();}
@@ -33,6 +37,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       controller: widget.controller,
       textInputAction: widget.textInputAction,
+      onSaved: widget.onSave,
+      onFieldSubmitted: widget.onSave,
       obscureText: widget.isPassword ? obscureText : false,
       validator: widget.validator,
       keyboardType: widget.textInputType,
@@ -40,7 +46,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         hintStyle: TextStyle(
           color: isDarkMode?AppColors.whiteColor:AppColors.blackColor
         ),
-        suffixIcon: widget.isPassword ? GestureDetector(
+        suffixIcon: widget.suffixIcon != null? Padding(
+          padding: const EdgeInsetsDirectional.only(start: 10, top: 6, bottom: 6, end: 6),
+          child: Icon(widget.suffixIcon),
+        ): widget.isPassword ? GestureDetector(
             onTap: toggle,
             child: Padding(
               padding: const EdgeInsetsDirectional.only(start: 16, top: 20, bottom: 20, end: 12),

@@ -1,44 +1,50 @@
-import 'package:earning/controller/nav_controller.dart';
-import 'package:earning/core/route/app_route.dart';
+import 'package:earning/view/screen/earning/earning_screen.dart';
+import 'package:earning/view/screen/home/home_screen.dart';
+import 'package:earning/view/screen/post/my_post_screen.dart';
+import 'package:earning/view/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
-class NavScreen extends StatelessWidget {
+class NavScreen extends StatefulWidget {
   const NavScreen({super.key});
 
   @override
+  State<NavScreen> createState() => _NavScreenState();
+}
+
+class _NavScreenState extends State<NavScreen> {
+  List<Widget> screen = [
+    const HomeScreen(),
+    const MyPostScreen(),
+    const EarningScreen(),
+    const ProfileScreen(),
+  ];
+  int bottomNavIndex = 0;
+  void navigation(int currentIndex) {
+    bottomNavIndex = currentIndex;
+    setState(() {
+
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    return GetBuilder<NavController>(
-      init: NavController(),
-      builder: (logic) {
-        print(logic.userModel.isVerified);
-        return Scaffold(
-          floatingActionButton: logic.isLoading?const SizedBox(): logic.userModel.isVerified??false?null:FloatingActionButton.extended(
-            label: const Center(child: Text("Verify Account")),
-            onPressed: () {
-              Get.toNamed(AppRoute.verifyScreen);
-            },
-          ),
+    return Scaffold(
 
-          //Body Section
-          body: logic.screen[logic.bottomNavIndex],
+      //Body Section
+      body: screen[bottomNavIndex],
 
-
-          //BottomNavigationBar Section
-          bottomNavigationBar: NavigationBar(
-            selectedIndex: logic.bottomNavIndex,
-            onDestinationSelected: logic.navigation,
-            animationDuration: const Duration(milliseconds: 400),
-            destinations: const [
-              NavigationDestination(icon: Icon(Iconsax.home), label: "Home"),
-              NavigationDestination(icon: Icon(Iconsax.video), label: "Post"),
-              NavigationDestination(icon: Icon(Iconsax.transaction_minus), label: "Balance"),
-              NavigationDestination(icon: Icon(Iconsax.profile_circle), label: "Profile"),
-            ],
-          ),
-        );
-      },
+      //BottomNavigationBar Section
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: bottomNavIndex,
+        onDestinationSelected: navigation,
+        animationDuration: const Duration(milliseconds: 400),
+        destinations: const [
+          NavigationDestination(icon: Icon(Iconsax.home), label: "Home"),
+          NavigationDestination(icon: Icon(Iconsax.video), label: "Post"),
+          NavigationDestination(icon: Icon(Iconsax.coin), label: "Coin"),
+          NavigationDestination(icon: Icon(Iconsax.profile_circle), label: "Profile"),
+        ],
+      ),
     );
   }
 }

@@ -105,7 +105,33 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Center(child: Text("Create Account",style: Theme.of(context).textTheme.titleMedium,),),
                       ),
                     ),
+                    const SizedBox(height: 12),
 
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            Get.toNamed(AppRoute.termsOfService);
+                          },
+                          child: const Text("Terms of Ues",style: TextStyle(
+                            color: AppColors.greenColor,
+                          )),
+                        ),
+                        const SizedBox(width: 5.0),
+                        const Text("And"),
+                        const SizedBox(width: 5.0),
+                        GestureDetector(
+                          onTap: (){
+                            Get.toNamed(AppRoute.privacyPolicy);
+                          },
+                          child: const Text("Privacy Policy",style: TextStyle(
+                            color: AppColors.greenColor,
+                          )),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

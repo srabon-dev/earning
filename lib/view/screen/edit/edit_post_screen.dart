@@ -78,9 +78,9 @@ class EditPostScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 8.0,),
                           TextFormField(
-                            maxLines: 6,
-                            minLines: 2,
-                            maxLength: 800,
+                            maxLines: 10,
+                            minLines: 5,
+                            maxLength: 1000,
                             controller: logic.descriptionController,
                             decoration: InputDecoration(
                               hintText: "Write interesting content, get more likes and earn more...",
@@ -142,7 +142,7 @@ class EditPostScreen extends StatelessWidget {
                               child: const Center(child: Icon(Iconsax.gallery,size: 50,),),
                             ),
                           ),
-                          const SizedBox(height: 12,),
+                          const SizedBox(height: 24,),
                           logic.updateLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Update", onTap: (){
                             if(logic.descriptionController.text != ""){
                               logic.updatePost(docId: Get.arguments);

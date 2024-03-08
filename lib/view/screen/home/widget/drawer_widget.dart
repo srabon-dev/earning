@@ -1,10 +1,9 @@
 import 'dart:developer';
-
 import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_constants.dart';
-import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/home_controller.dart';
 import 'package:earning/core/route/app_route.dart';
+import 'package:earning/view/screen/auth/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -61,6 +60,22 @@ class HomeDrawer extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12)
                     ),
                     child: GestureDetector(
+                      onTap: () async {
+                        Get.toNamed(AppRoute.languagesScreen);
+                      },
+                      child: const ListTile(
+                        leading: Icon(Iconsax.language_square),
+                        title: Text("Languages"),
+                        trailing: Icon(Iconsax.arrow_right),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: AppColors.whiteColor),
+                        borderRadius: BorderRadius.circular(12)
+                    ),
+                    child: GestureDetector(
                       onTap: (){
                         Get.toNamed(AppRoute.privacyPolicy);
                       },
@@ -109,28 +124,8 @@ class HomeDrawer extends StatelessWidget {
                         borderRadius: BorderRadius.circular(12)
                     ),
                     child: GestureDetector(
-                      onTap: (){
-                        Get.toNamed(AppRoute.contactUs);
-                      },
-                      child: const ListTile(
-                        leading: Icon(Iconsax.info_circle),
-                        title: Text("Contact Us"),
-                        trailing: Icon(Iconsax.arrow_right),
-                      ),
-                    ),
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                        side: const BorderSide(color: AppColors.whiteColor),
-                        borderRadius: BorderRadius.circular(12)
-                    ),
-                    child: GestureDetector(
                       onTap: () async {
-                        await FirebaseAuth.instance.signOut().then((value){
-                          Get.offAndToNamed(AppRoute.loginScreen);
-                        }).onError((error, stackTrace){
-                          log(error.toString());
-                        });
+                        await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LoginScreen()),(route) => false));
                       },
                       child: const ListTile(
                         leading: Icon(Iconsax.logout),
