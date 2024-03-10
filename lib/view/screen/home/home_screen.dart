@@ -50,10 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.grey.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8.0)
                         ),
-                        child: const Text("Your verification status is pending. Our skilled support team will verify your information and verify your account. stay with us Thank you",maxLines: 3,style: TextStyle(color: AppColors.redColor),),
+                        child: Text("your_verification_status_pending".tr,maxLines: 3,style: TextStyle(color: AppColors.redColor),),
                       ),
                       const SizedBox(height: 8.0),
-                      CustomButton(text: "Re Verification", onTap: (){
+                      CustomButton(text: "re_verification".tr, onTap: (){
                         Get.toNamed(AppRoute.verifyScreen);
                       }),
                     ],
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.grey.withOpacity(0.1),
                             borderRadius: BorderRadius.circular(8.0)
                         ),
-                        child: const Text("Your account is not verified, please verify account and start earning",maxLines: 3,style: TextStyle(color: AppColors.redColor),),
+                        child: Text("your_account_not_verified".tr,maxLines: 3,style: TextStyle(color: AppColors.redColor),),
                       ),
                       const SizedBox(height: 8.0),
                       CustomButton(text: "Verify Account", onTap: (){
@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       stream: FirebaseFirestore.instance.collection('post').orderBy("createdAt",descending: true).where('isApproved',isEqualTo: true).snapshots(),
                       builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasError) {
-                          return const Center(child: Text("Something went wrong"));
+                          return Center(child: Text("something_went_wrong".tr));
                         }
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           return ListView.builder(
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           );
                         }
                         if(snapshot.data?.docs.isEmpty??false){
-                          return const Center(child: Text("No posts available"));
+                          return Center(child: Text("no_posts_available".tr));
                         }else if(snapshot.data?.docs.isNotEmpty??false){
                           return ListView.separated(
                             itemCount: snapshot.data?.docs.length??0,
@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                           );
                         }else{
-                          return const Center(child: Text("No posts available"));
+                          return Center(child: Text("no_posts_available".tr));
                         }
                       }
                   ),

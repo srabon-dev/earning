@@ -13,13 +13,13 @@ class VerifyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(name: "Verify"),
+        appBar: CustomAppBar(name: "verify".tr),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 12.0),
           child: Column(
             children: [
-              Text("Benefits of Account Verification",
+              Text("benefits_of_account_verification".tr,
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(
                 height: 12,
@@ -34,7 +34,7 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("You can earn money by posting content.",
+                  Text("you_can_earn_money_by_posting_content".tr,
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
@@ -50,7 +50,7 @@ class VerifyScreen extends StatelessWidget {
                     width: 5,
                   ),
                   Text(
-                      "You will get green tick verification icon with your name.",
+                      "you_will_get_green_tick_verification_icon_with_your_name".tr,
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
@@ -65,7 +65,7 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("You will get 1 Coin for each like. and If you like other people's post then you will get 1 coin",
+                  Text("you_will_get_coin_for_each_like".tr,
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
@@ -80,7 +80,7 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("You can make 10 post per day.",
+                  Text("you_can_make_10_post_per_day".tr,
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
@@ -97,12 +97,12 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("Lifetime Earning",
+                  Text("lifetime_earning".tr,
                       style: Theme.of(context).textTheme.titleMedium),
                 ],
               ),
               const SizedBox(height: 24),
-              Text("Requirement",
+              Text("requirement".tr,
                   style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(
                 height: 12,
@@ -118,25 +118,7 @@ class VerifyScreen extends StatelessWidget {
                     width: 5,
                   ),
                   Flexible(
-                      child: Text(
-                          "NID / Date of Birth /Any Government Document - NID card or Date of Birth or Any Government Document of the person whose name the account is opened.",
-                          maxLines: 3,
-                          style: Theme.of(context).textTheme.titleMedium)),
-                ],
-              ),
-              const SizedBox(height: 8.0),
-              Row(
-                children: [
-                  const Icon(
-                    Iconsax.verify,
-                    color: AppColors.greenColor,
-                    size: 28,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Flexible(
-                      child: Text("One Time Payment BDT 5000Tk",
+                      child: Text("one_time_payment".tr,
                           maxLines: 2,
                           style: Theme.of(context).textTheme.titleMedium)),
                 ],
@@ -144,10 +126,9 @@ class VerifyScreen extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              Text("Note", style: Theme.of(context).textTheme.titleLarge),
+              Text("note".tr, style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(width: 5.0),
-              Text(
-                "If you provide incorrect information, your account will not be accepted and the account from which you will pay will be refunded.",
+              Text("if_you_provide_incorrect_information".tr,
                 maxLines: 3,
                 style: TextStyle(
                   fontWeight: FontWeight.w800,
@@ -155,12 +136,12 @@ class VerifyScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              CustomButton(text: "Start Verification", onTap: () {
+              CustomButton(text: "start_verification".tr, onTap: () {
 
               }),
               const SizedBox(height: 12),
               CustomButton(
-                  text: "Skip",
+                  text: "skip".tr,
                   onTap: () {
                     Get.offAndToNamed(AppRoute.navScreen);
                   }),

@@ -24,10 +24,10 @@ class EarningScreen extends StatelessWidget {
       child: Scaffold(
         floatingActionButton: FloatingActionButton.extended(onPressed: (){
           Get.toNamed(AppRoute.messageScreen);
-        },label: const Column(
+        },label: Column(
           children: [
-            Icon(Iconsax.message),
-            Text("Need Support"),
+            const Icon(Iconsax.message),
+            Text("need_support".tr),
           ],
         ),),
         body: SingleChildScrollView(
@@ -40,7 +40,7 @@ class EarningScreen extends StatelessWidget {
                 future: FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser?.uid).get(),
                 builder: (BuildContext context,AsyncSnapshot<DocumentSnapshot?> snapshot) {
                   if (snapshot.hasError) {
-                    return const Center(child: Text("Something went wrong"));
+                    return Center(child: Text("something_went_wrong".tr));
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return Container(
@@ -78,7 +78,7 @@ class EarningScreen extends StatelessWidget {
                               const Text(" Coin"),
                             ],
                           ),
-                          const Text("more like more earning!",style: TextStyle(fontSize: 14,fontFamily: "Bold",fontWeight: FontWeight.w800),),
+                          Text("more_like_more_earning".tr,style: const TextStyle(fontSize: 14,fontFamily: "Bold",fontWeight: FontWeight.w800),),
                           const SizedBox(height: 12),
                           InkWell(
                             onTap: (){
@@ -90,7 +90,7 @@ class EarningScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.orange,
                               ),
-                              child: Center(child: Text("Withdraw Coin",style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              child: Center(child: Text("withdraw_coin".tr,style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 color: AppColors.whiteColor,
                               ))),
                             ),
@@ -115,7 +115,7 @@ class EarningScreen extends StatelessWidget {
                             Text(" Coin"),
                           ],
                         ),
-                        const Text("more like more earning!",style: TextStyle(fontSize: 14,fontFamily: "Bold",fontWeight: FontWeight.w800),),
+                        Text("more_like_more_earning".tr,style: TextStyle(fontSize: 14,fontFamily: "Bold",fontWeight: FontWeight.w800),),
                         const SizedBox(height: 12),
                         InkWell(
                           onTap: (){
@@ -127,7 +127,7 @@ class EarningScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(12),
                               color: Colors.orange,
                             ),
-                            child: Center(child: Text("Withdraw Coin",style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            child: Center(child: Text("withdraw_coin".tr,style: Theme.of(context).textTheme.titleLarge?.copyWith(
                               color: AppColors.whiteColor,
                             ))),
                           ),
@@ -138,10 +138,10 @@ class EarningScreen extends StatelessWidget {
                 }
               ),
               const SizedBox(height: 12),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Transaction"),
+                  Text("transaction".tr),
                   Icon(Iconsax.arrow_bottom)
                 ],
               ),
@@ -150,7 +150,7 @@ class EarningScreen extends StatelessWidget {
                   stream: FirebaseFirestore.instance.collection('transaction').orderBy("createdAt",descending: true).where('postEmail',isEqualTo: FirebaseAuth.instance.currentUser?.email).snapshots(),
                   builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.hasError) {
-                      return const Center(child: Text("Something went wrong"));
+                      return Center(child: Text("something_went_wrong".tr));
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return ListView.builder(
@@ -163,7 +163,7 @@ class EarningScreen extends StatelessWidget {
                       );
                     }
                     if(snapshot.data?.docs.isEmpty??false){
-                      return const Center(child: Text("Transaction not available"));
+                      return Center(child: Text("transaction_not_available".tr));
                     }else if(snapshot.data?.docs.isNotEmpty??false){
                       return ListView.separated(
                         itemCount: snapshot.data?.docs.length??0,
@@ -212,7 +212,7 @@ class EarningScreen extends StatelessWidget {
                         },
                       );
                     }else{
-                      return const Center(child: Text("Transaction not available"));
+                      return Center(child: Text("transaction_not_available".tr));
                     }
                   }
               ),

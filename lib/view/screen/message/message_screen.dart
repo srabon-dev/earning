@@ -47,7 +47,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   stream: FirebaseFirestore.instance.collection('message').doc(FirebaseAuth.instance.currentUser?.uid).collection('chat').snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
                     if (snapshot.hasError) {
-                      return const Center(child: Text('Something went wrong'));
+                      return Center(child: Text("something_went_wrong".tr));
                     }
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return ListView.builder(
@@ -61,7 +61,7 @@ class _MessageScreenState extends State<MessageScreen> {
                       );
                     }
                     if(snapshot.data?.docs.isEmpty??false){
-                      return const Center(child: Text("No Message available"));
+                      return Center(child: Text("no_message_available".tr));
                     }else if(snapshot.data?.docs.isNotEmpty??false){
                       WidgetsBinding.instance?.addPostFrameCallback((_) {
                         scrollController?.animateTo(
@@ -96,7 +96,7 @@ class _MessageScreenState extends State<MessageScreen> {
                         },
                       );
                     }else{
-                      return const Center(child: Text("No posts available"));
+                      return Center(child: Text("no_message_available".tr));
                     }
                   },
                 ),

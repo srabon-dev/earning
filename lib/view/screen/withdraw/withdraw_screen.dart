@@ -36,7 +36,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
       child: GetBuilder<WithdrawController>(
         builder: (logic) {
           return Scaffold(
-            appBar: const CustomAppBar(name: "Withdraw Coin",isBack: true,),
+            appBar: CustomAppBar(name: "withdraw_coin".tr,isBack: true,),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 12),
@@ -58,13 +58,13 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                               Row(
                                 children: [
                                   Radio(value: 1, groupValue: logic.selectedValue, onChanged: logic.changeSelectedValue),
-                                  Text("Bkash",style: Theme.of(context).textTheme.titleLarge)
+                                  Text("bkash".tr,style: Theme.of(context).textTheme.titleLarge)
                                 ],
                               ),
                               Row(
                                 children: [
                                   Radio(value: 2, groupValue: logic.selectedValue, onChanged: logic.changeSelectedValue),
-                                  Text("Nagad",style: Theme.of(context).textTheme.titleLarge)
+                                  Text("nagad".tr,style: Theme.of(context).textTheme.titleLarge)
                                 ],
                               ),
                             ],
@@ -77,19 +77,19 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Name",
+                                "name".tr,
                                 style: Theme.of(context).textTheme.titleLarge,
                               )),
                           const SizedBox(
                             height: 8,
                           ),
                           CustomTextField(
-                            hintText: "Name",
+                            hintText: "name".tr,
                             prefixIcon: Iconsax.profile_circle,
                             controller: logic.nameController,
                             validator: (name) {
                               if (logic.nameController.text == "") {
-                                return "Please enter valid name";
+                                return "please_enter_valid_name".tr;
                               } else {
                                 return null;
                               }
@@ -101,19 +101,19 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Email",
+                                "bkash_nagad_number".tr,
                                 style: Theme.of(context).textTheme.titleLarge,
                               )),
                           const SizedBox(height: 5),
                           CustomTextField(
-                            hintText: "Personal Bkash/Nagad",
+                            hintText: "personal_bkash_nagad".tr,
                             prefixIcon: Iconsax.call,
                             textInputType: TextInputType.number,
                             validator: (value){
                               if(RegExp(r'^01[3-9][0-9]{8}$').hasMatch(value ?? '')){
                                 return null;
                               }else{
-                                return "Please enter valid Phone number!";
+                                return "please_enter_valid_phone_number".tr;
                               }
                             },
                             controller: logic.numberController,
@@ -124,19 +124,19 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                "Coin",
+                                "coin".tr,
                                 style: Theme.of(context).textTheme.titleLarge,
                               )),
                           const SizedBox(height: 5),
                           CustomTextField(
-                            hintText: "Coin",
+                            hintText: "coin".tr,
                             prefixIcon: Icons.monetization_on_outlined,
                             textInputType: TextInputType.number,
                             validator: (value){
                               if(value != '' && value != null){
                                 return null;
                               }else{
-                                return "Please enter withdraw amount!";
+                                return "please_enter_withdraw_amount".tr;
                               }
                             },
                             controller: logic.amountController,
@@ -148,7 +148,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 if(int.parse(logic.amountController.text.trim()) >= 1000){
                                   logic.sendWithdrawRequest();
                                 }else{
-                                  Fluttertoast.showToast(msg: "Your account balance is low, minimum withdrawal balance is BDT 1000Tk");
+                                  Fluttertoast.showToast(msg: "your_account_balance_low".tr);
                                 }
                               }
                             },
@@ -158,7 +158,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.orange,
                               ),
-                              child: Center(child: Text("Withdraw",style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              child: Center(child: Text("withdraw".tr,style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                 color: AppColors.whiteColor,
                               ))),
                             ),
@@ -168,10 +168,10 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Withdraw History"),
+                      Text("withdraw_history".tr),
                       Icon(Iconsax.arrow_bottom)
                     ],
                   ),
@@ -180,7 +180,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                       stream: FirebaseFirestore.instance.collection('withdraw').orderBy("createdAt",descending: true).where('email',isEqualTo: FirebaseAuth.instance.currentUser?.email).snapshots(),
                       builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasError) {
-                          return const Center(child: Text("Something went wrong"));
+                          return Center(child: Text("something_went_wrong".tr));
                         }
                         if (snapshot.connectionState == ConnectionState.waiting) {
                           return ListView.builder(
@@ -193,7 +193,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           );
                         }
                         if(snapshot.data?.docs.isEmpty??false){
-                          return const Center(child: Text("Transaction not available"));
+                          return Center(child: Text("transaction_not_available".tr));
                         }else if(snapshot.data?.docs.isNotEmpty??false){
                           print(snapshot.data?.docs.isEmpty);
                           return ListView.separated(
@@ -262,7 +262,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                             },
                           );
                         }else{
-                          return const Center(child: Text("Transaction not available"));
+                          return Center(child: Text("transaction_not_available".tr));
                         }
                       }
                   ),

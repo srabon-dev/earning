@@ -15,7 +15,7 @@ class PrivacyPolicy extends StatelessWidget {
         init: PrivacyController(),
         builder: (logic) {
           return Scaffold(
-            appBar: const CustomAppBar(name: "Privacy Policy",isBack: true),
+            appBar: const CustomAppBar(name: "privacy_policy",isBack: true),
             body: Stack(
               children: [
                 InAppWebView(

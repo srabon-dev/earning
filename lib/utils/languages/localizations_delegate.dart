@@ -1,3 +1,4 @@
+/*
 import 'package:earning/constant/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'languages_localizations.dart';
@@ -14,4 +15,4 @@ class TranslationsDelegate extends LocalizationsDelegate<LanguageTranslation> {
 
   @override
   bool shouldReload(TranslationsDelegate old) => false;
-}
+}*/

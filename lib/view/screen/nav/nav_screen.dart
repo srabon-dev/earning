@@ -3,6 +3,7 @@ import 'package:earning/view/screen/home/home_screen.dart';
 import 'package:earning/view/screen/post/my_post_screen.dart';
 import 'package:earning/view/screen/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class NavScreen extends StatefulWidget {
@@ -38,11 +39,11 @@ class _NavScreenState extends State<NavScreen> {
         selectedIndex: bottomNavIndex,
         onDestinationSelected: navigation,
         animationDuration: const Duration(milliseconds: 400),
-        destinations: const [
-          NavigationDestination(icon: Icon(Iconsax.home), label: "Home"),
-          NavigationDestination(icon: Icon(Iconsax.video), label: "Post"),
-          NavigationDestination(icon: Icon(Iconsax.coin), label: "Coin"),
-          NavigationDestination(icon: Icon(Iconsax.profile_circle), label: "Profile"),
+        destinations: [
+          NavigationDestination(icon: const Icon(Iconsax.home), label: "home".tr),
+          NavigationDestination(icon: const Icon(Iconsax.video), label: "post".tr),
+          NavigationDestination(icon: const Icon(Iconsax.coin), label: "coin".tr),
+          NavigationDestination(icon: const Icon(Iconsax.profile_circle), label: "profile".tr),
         ],
       ),
     );

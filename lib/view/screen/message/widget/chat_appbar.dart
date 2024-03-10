@@ -40,8 +40,8 @@ class ChatAppBar extends StatelessWidget implements PreferredSizeWidget{
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Customer Support",style: Theme.of(context).textTheme.titleMedium,),
-                  Text("24/7 Support",style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 10)),
+                  Text("customer_support".tr,style: Theme.of(context).textTheme.titleMedium,),
+                  Text("support".tr,style: Theme.of(context).textTheme.titleMedium?.copyWith(fontSize: 10)),
                 ],
               ),
             ],

@@ -2,6 +2,7 @@ import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/auth_controller.dart';
 import 'package:earning/core/route/app_route.dart';
+import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
 import 'package:earning/view/widget/button/custom_button.dart';
 import 'package:earning/view/widget/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         builder: (logic) {
           return SafeArea(
             child: Scaffold(
+              appBar: CustomAppBar(name: "create_account".tr,isBack: true),
               body: SingleChildScrollView(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
@@ -47,17 +49,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Name",
+                            "name".tr,
                             style: Theme.of(context).textTheme.titleLarge,
                           )),
                       const SizedBox(
                         height: 8,
                       ),
                       CustomTextField(
-                        hintText: "Enter Name",
+                        hintText: "enter_name".tr,
                         validator: (name) {
                           if (logic.nameController.text == "") {
-                            return "Please enter valid name";
+                            return "please_enter_valid_name".tr;
                           } else {
                             return null;
                           }
@@ -71,12 +73,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Email",
+                            "email".tr,
                             style: Theme.of(context).textTheme.titleLarge,
                           )),
                       const SizedBox(height: 5),
                       CustomTextField(
-                        hintText: "Enter Email",
+                        hintText: "enter_email".tr,
                         validator: (email) {
                           final bool emailValid = RegExp(
                                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
@@ -84,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           if (emailValid) {
                             return null;
                           } else {
-                            return "Please Enter Valid Email Address";
+                            return "please_enter_valid_email_address".tr;
                           }
                         },
                         controller: logic.emailRController,
@@ -96,18 +98,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Phone Number",
+                            "phone_number".tr,
                             style: Theme.of(context).textTheme.titleLarge,
                           )),
                       const SizedBox(height: 5),
                       CustomTextField(
-                        hintText: "Enter Number",
+                        hintText: "enter_number".tr,
                         textInputType: TextInputType.number,
                         validator: (value){
                           if(RegExp(r'^01[3-9][0-9]{8}$').hasMatch(value ?? '')){
                             return null;
                           }else{
-                            return "Please enter valid Phone number!";
+                            return "please_enter_valid_phone_number".tr;
                           }
                         },
                         controller: logic.phoneController,
@@ -119,18 +121,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Password",
+                            "password".tr,
                             style: Theme.of(context).textTheme.titleLarge,
                           )),
                       const SizedBox(height: 5),
                       CustomTextField(
-                        hintText: "Enter Password",
+                        hintText: "enter_password".tr,
                         validator: (password) {
                           if (logic.passwordRController.text == "") {
-                            return "Please Enter Valid Password";
+                            return "please_enter_valid_password".tr;
                           } else if (logic.passwordRController.text.length <
                               6) {
-                            return "Password must be 6 characters";
+                            return "password_must_be_characters".tr;
                           } else {
                             return null;
                           }
@@ -145,16 +147,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "Confirm Password",
+                            "confirm_password".tr,
                             style: Theme.of(context).textTheme.titleLarge,
                           )),
                       const SizedBox(height: 5),
                       CustomTextField(
-                        hintText: "Confirm Password",
+                        hintText: "confirm_password".tr,
                         validator: (conPassword) {
                           if (logic.confirmPasswordRController.text !=
                               logic.passwordRController.text) {
-                            return "Password do NOT match";
+                            return "password_do_not_match".tr;
                           } else {
                             return null;
                           }
@@ -169,14 +171,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               child: CircularProgressIndicator(),
                             )
                           : CustomButton(
-                              text: "Create Account",
+                              text: "create_account".tr,
                               onTap: () {
                                 if (formKey.currentState!.validate()) {
                                   logic.register();
                                 }
                               }),
                       const SizedBox(height: 44),
-                      const Text("Already have an account?"),
+                      Text("already_have_an_account".tr),
                       const SizedBox(height: 5),
                       GestureDetector(
                         onTap: ()=>Get.toNamed(AppRoute.loginScreen),
@@ -188,7 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             color: isDarkMode?AppColors.blackColor:AppColors.whiteColor,
                             border: Border.all(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor)
                           ),
-                          child: Center(child: Text("Login",style: Theme.of(context).textTheme.titleMedium,),),
+                          child: Center(child: Text("login".tr,style: Theme.of(context).textTheme.titleMedium,),),
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -200,23 +202,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             onTap: (){
                               Get.toNamed(AppRoute.termsOfService);
                             },
-                            child: const Text("Terms of Ues",style: TextStyle(
+                            child: Text("terms_of_ues".tr,style: TextStyle(
                               color: AppColors.greenColor,
                             )),
                           ),
                           const SizedBox(width: 5.0),
-                          const Text("And"),
+                          Text("and".tr),
                           const SizedBox(width: 5.0),
                           GestureDetector(
                             onTap: (){
                               Get.toNamed(AppRoute.privacyPolicy);
                             },
-                            child: const Text("Privacy Policy",style: TextStyle(
+                            child: Text("privacy_policy".tr,style: TextStyle(
                               color: AppColors.greenColor,
                             )),
                           ),
                         ],
                       ),
+                      const SizedBox(height: 44),
                     ],
                   ),
                 ),

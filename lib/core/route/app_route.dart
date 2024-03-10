@@ -1,4 +1,5 @@
 import 'package:earning/view/screen/auth/forget/forget_password.dart';
+import 'package:earning/view/screen/auth/intro/auth_screen.dart';
 import 'package:earning/view/screen/auth/login/login_screen.dart';
 import 'package:earning/view/screen/auth/register/register_screen.dart';
 import 'package:earning/view/screen/create/create_post_screen.dart';
@@ -25,6 +26,7 @@ class AppRoute{
   static const String splashScreen = "/splash_screen";
 
   //Auth
+  static const String authIntroScreen = "/auth_screen";
   static const String loginScreen = "/login_screen";
   static const String registerScreen = "/register_screen";
   static const String forgetPassword = "/forget_password";
@@ -53,6 +55,7 @@ class AppRoute{
 
   static List<GetPage> routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen()),
+    GetPage(name: authIntroScreen, page: () => const AuthScreen()),
     GetPage(name: loginScreen, page: () => const LoginScreen()),
     GetPage(name: registerScreen, page: () => const RegisterScreen()),
     GetPage(name: forgetPassword, page: () => const ForgetPassword()),

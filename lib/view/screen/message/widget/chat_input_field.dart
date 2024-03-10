@@ -93,7 +93,7 @@ class ChatInputField extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             borderSide: const BorderSide(color: AppColors.redColor),
                           ),
-                          hintText: "Write your message",
+                          hintText: "write_your_message".tr,
                         ),
                       ),
                     ),

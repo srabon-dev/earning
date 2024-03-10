@@ -1,3 +1,103 @@
 {
-  "appName": "Opex"
+  "appName": "Opex",
+
+  "save": "Save",
+  "forget_password": "Forget Password",
+  "email": "Email",
+  "enter_email": "Enter Email",
+  "please_enter_valid_email_address": "Please Enter Valid Email Address",
+  "confirm": "Confirm",
+
+  "login": "Login",
+  "password": "Password",
+  "enter_password": "Enter Password",
+  "please_enter_valid_password": "Please Enter Valid Password",
+  "password_must_be_characters": "Password must be 6 characters",
+  "forget_password1": "Forget Password?",
+  "do_not_have_an_account": "Don't have an Account?",
+  "create_account": "Create Account",
+  "terms_of_ues": "Terms of Ues",
+  "and": "And",
+  "privacy_policy": "Privacy Policy",
+
+  "name": "Name",
+  "enter_name": "Enter Name",
+  "please_enter_valid_name": "Please enter valid name",
+  "phone_number": "Phone Number",
+  "enter_number": "Enter Number",
+  "please_enter_valid_phone_number": "Please enter valid Phone number!",
+  "confirm_password": "Confirm Password",
+  "password_do_not_match": "Password do NOT match",
+  "already_have_an_account": "Already have an account?",
+
+
+  "create_post": "Create Post",
+  "write_interesting_content_get_more_likes_and_earn_more": "Write interesting content, get more likes and earn more...",
+  "please_enter_all_information": "Please enter all information",
+  "post": "Post",
+
+
+  "need_support": "Need Support",
+  "something_went_wrong": "Something went wrong",
+  "more_like_more_earning": "more like more earning!",
+  "withdraw_coin": "Withdraw Coin",
+  "transaction": "Transaction",
+  "transaction_not_available": "Transaction not available",
+
+  "edit_post": "Edit Post",
+  "update": "Update",
+  "your_verification_status_pending": "Your verification status is pending. Our skilled support team will verify your information and verify your account. stay with us Thank you",
+  "re_verification": "Re Verification",
+  "your_account_not_verified": "Your account is not verified, please verify account and start earning",
+  "no_posts_available": "No posts available",
+  "create_posts_and_making_money": "Create posts and making money...",
+  "logout": "Logout",
+  "about_us": "About Us",
+  "languages": "Languages",
+
+  "you_can_later_change_the_language": "You can later change the language from the home screen menu bar",
+  "select_languages": "Select Languages",
+
+  "no_message_available": "No Message available",
+  "write_your_message": "Write your message",
+  "customer_support": "Customer Support",
+  "support": "24/7 Support",
+
+  "home": "Home",
+  "coin": "Coin",
+  "profile": "Profile",
+
+  "my_post": "My Post",
+
+  "edit_profile": "Edit Profile",
+
+  "edit": "Edit",
+  "phone": "Phone",
+  "account_verified": "Account verified",
+  "account_not_verified": "Account not verified",
+  "post_everyDay_and_earning_money": "Post EveryDay And Earning Money!",
+  "verify_your_account_and_start_earning": "Verify your account and start earning!",
+
+  "verify": "Verify",
+  "benefits_of_account_verification": "Benefits of Account Verification",
+  "note": "Note",
+  "if_you_provide_incorrect_information": "If you provide incorrect information, your account will not be accepted and the account from which you will pay will be refunded.",
+  "start_verification": "Start Verification",
+  "skip": "Skip",
+  "requirement": "Requirement",
+  "you_can_earn_money_by_posting_content": "You can earn money by posting content.",
+  "you_will_get_green_tick_verification_icon_with_your_name": "You will get green tick verification icon with your name.",
+  "you_will_get_coin_for_each_like": "You will get 1 Coin for each like. and If you like other people's post then you will get 1 coin",
+  "you_can_make_10_post_per_day": "You can make 10 post per day.",
+  "lifetime_earning": "Lifetime Earning",
+  "one_time_payment": "One Time Payment BDT 5000Tk",
+
+  "withdraw_history": "Withdraw History",
+  "withdraw": "Withdraw",
+  "your_account_balance_low": "Your account balance is low, minimum withdrawal balance is BDT 1000Tk",
+  "please_enter_withdraw_amount": "Please enter withdraw amount!",
+  "personal_bkash_nagad": "Personal Bkash/Nagad",
+  "bkash_nagad_number": "Bkash/Nagad Number",
+  "bkash": "Bkash",
+  "nagad": "Nagad"
 }

@@ -18,14 +18,14 @@ class MyPostScreen extends StatelessWidget {
         init: MyPostController(),
         builder: (logic) {
           return Scaffold(
-            appBar: const CustomAppBar(name: "My Post"),
+            appBar: CustomAppBar(name: "my_post".tr),
             body: Padding(
               padding: const EdgeInsets.only(top: 18.0),
               child: StreamBuilder<QuerySnapshot>(
                 stream: FirebaseFirestore.instance.collection('post').orderBy("createdAt",descending: true).where('email',isEqualTo: FirebaseAuth.instance.currentUser?.email).snapshots(),
                 builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
-                    return const Center(child: Text('Something went wrong'));
+                    return Center(child: Text('something_went_wrong'.tr));
                   }
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return ListView.builder(
@@ -36,7 +36,7 @@ class MyPostScreen extends StatelessWidget {
                     );
                   }
                   if(snapshot.data?.docs.isEmpty??false){
-                    return const Center(child: Text("No posts available"));
+                    return Center(child: Text("no_posts_available".tr));
                   }else if(snapshot.data?.docs.isNotEmpty??false){
                     return ListView.separated(
                       itemCount: snapshot.data?.docs.length??0,
@@ -61,7 +61,7 @@ class MyPostScreen extends StatelessWidget {
                       },
                     );
                   }else{
-                    return const Center(child: Text("No posts available"));
+                    return Center(child: Text("no_posts_available".tr));
                   }
                 }
               ),

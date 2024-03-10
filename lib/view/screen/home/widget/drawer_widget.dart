@@ -1,9 +1,8 @@
-import 'dart:developer';
 import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_constants.dart';
 import 'package:earning/controller/home_controller.dart';
 import 'package:earning/core/route/app_route.dart';
-import 'package:earning/view/screen/auth/login/login_screen.dart';
+import 'package:earning/view/screen/auth/intro/auth_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +18,6 @@ class HomeDrawer extends StatelessWidget {
         return SingleChildScrollView(
           child: Column(
             children: [
-
               //Drawer Header Section
               DrawerHeader(
                 child: SizedBox(
@@ -61,11 +59,11 @@ class HomeDrawer extends StatelessWidget {
                     ),
                     child: GestureDetector(
                       onTap: () async {
-                        Get.toNamed(AppRoute.languagesScreen);
+                        Get.toNamed(AppRoute.languagesScreen,arguments: false);
                       },
-                      child: const ListTile(
+                      child: ListTile(
                         leading: Icon(Iconsax.language_square),
-                        title: Text("Languages"),
+                        title: Text("languages".tr),
                         trailing: Icon(Iconsax.arrow_right),
                       ),
                     ),
@@ -79,9 +77,9 @@ class HomeDrawer extends StatelessWidget {
                       onTap: (){
                         Get.toNamed(AppRoute.privacyPolicy);
                       },
-                      child: const ListTile(
+                      child: ListTile(
                         leading: Icon(Icons.privacy_tip_outlined),
-                        title: Text("Privacy Policy"),
+                        title: Text("privacy_policy".tr),
                         trailing: Icon(Iconsax.arrow_right),
                       ),
                     ),
@@ -95,9 +93,9 @@ class HomeDrawer extends StatelessWidget {
                       onTap: (){
                         Get.toNamed(AppRoute.termsOfService);
                       },
-                      child: const ListTile(
+                      child: ListTile(
                         leading: Icon(Iconsax.info_circle),
-                        title: Text("Terms of Service"),
+                        title: Text("terms_of_ues".tr),
                         trailing: Icon(Iconsax.arrow_right),
                       ),
                     ),
@@ -111,9 +109,9 @@ class HomeDrawer extends StatelessWidget {
                       onTap: (){
                         Get.toNamed(AppRoute.aboutUs);
                       },
-                      child: const ListTile(
+                      child: ListTile(
                         leading: Icon(Iconsax.information),
-                        title: Text("About us"),
+                        title: Text("about_us".tr),
                         trailing: Icon(Iconsax.arrow_right),
                       ),
                     ),
@@ -125,11 +123,11 @@ class HomeDrawer extends StatelessWidget {
                     ),
                     child: GestureDetector(
                       onTap: () async {
-                        await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const LoginScreen()),(route) => false));
+                        await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const AuthScreen()),(route) => false));
                       },
-                      child: const ListTile(
+                      child: ListTile(
                         leading: Icon(Iconsax.logout),
-                        title: Text("Logout"),
+                        title: Text("logout".tr),
                         trailing: Icon(Iconsax.arrow_right),
                       ),
                     ),

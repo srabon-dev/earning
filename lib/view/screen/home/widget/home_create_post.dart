@@ -20,7 +20,7 @@ class HomeCreatePost extends StatelessWidget {
             if(logic.userModel.isVerified??false){
               Get.toNamed(AppRoute.createPostScreen);
             }else{
-              Fluttertoast.showToast(msg: "Your account is not verified, please verify account and start earning");
+              Fluttertoast.showToast(msg: "your_account_not_verified".tr);
             }
           },
           child: Container(
@@ -35,7 +35,7 @@ class HomeCreatePost extends StatelessWidget {
               children: [
                 const Icon(Iconsax.gallery,size: 35,),
                 const SizedBox(width: 12.0),
-                Text("Create posts and making money...",style: Theme.of(context).textTheme.titleMedium,),
+                Text("create_posts_and_making_money".tr,style: Theme.of(context).textTheme.titleMedium,),
               ],
             ),
           ),

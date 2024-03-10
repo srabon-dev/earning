@@ -26,10 +26,10 @@ class ProfileScreen extends StatelessWidget {
           return Scaffold(
             floatingActionButton: FloatingActionButton.extended(onPressed: (){
               Get.toNamed(AppRoute.messageScreen);
-            },label: const Column(
+            },label: Column(
               children: [
                 Icon(Iconsax.message),
-                Text("Need Support"),
+                Text("need_support".tr),
               ],
             ),),
             body: logic.isLoading? const Center(child: CircularProgressIndicator()):
@@ -61,23 +61,23 @@ class ProfileScreen extends StatelessWidget {
                   logic.userModel.isVerified??false? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Account verified",style: Theme.of(context).textTheme.titleLarge,),
+                      Text("account_verified".tr,style: Theme.of(context).textTheme.titleLarge,),
                       const Icon(Icons.verified,color: AppColors.greenColor,size: 18,),
                     ],
                   ):Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Account not verified",style: Theme.of(context).textTheme.titleLarge,),
+                      Text("account_not_verified".tr,style: Theme.of(context).textTheme.titleLarge,),
                       const Icon(Icons.cancel_outlined,color: AppColors.redColor,size: 18,),
                     ],
                   ),
-                  logic.userModel.isVerified??false?const Text("Post EveryDay And Earning Money!"):const Text("Verify your account and start earning!"),
+                  logic.userModel.isVerified??false? Text("post_everyDay_and_earning_money".tr): Text("verify_your_account_and_start_earning".tr),
                   const SizedBox(
                     height: 12,
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Name",style: Theme.of(context).textTheme.titleLarge,),
+                    child: Text("name".tr,style: Theme.of(context).textTheme.titleLarge,),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 12),
@@ -100,7 +100,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Email",style: Theme.of(context).textTheme.titleLarge,),
+                    child: Text("email".tr,style: Theme.of(context).textTheme.titleLarge,),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 12),
@@ -123,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
-                    child: Text("Phone",style: Theme.of(context).textTheme.titleLarge,),
+                    child: Text("phone".tr,style: Theme.of(context).textTheme.titleLarge,),
                   ),
                   Container(
                     padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 12),
@@ -142,7 +142,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24,),
-                  CustomButton(text: "Edit", onTap: (){
+                  CustomButton(text: "edit".tr, onTap: (){
                     Get.toNamed(AppRoute.editProfileScreen);
                   }),
                   const SizedBox(height: 12,),

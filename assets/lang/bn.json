@@ -1,3 +1,103 @@
 {
-  "appName": ""
+  "appName": "ওপেক্স",
+
+  "save" : "সেভ করুন",
+  "forget_password": "পাসওয়ার্ড ভুলে গেছেন?",
+  "email": "ইমেইল",
+  "enter_email": "ইমেইল লিখুন",
+  "please_enter_valid_email_address": "সঠিক ইমেইল লিখুন",
+  "confirm": "কনফার্ম করুন",
+
+  "login": "লগইন",
+  "password": "পাসওয়ার্ড",
+  "enter_password": "পাসওয়ার্ড লিখুন",
+  "please_enter_valid_password": "সঠিক পাসওয়ার্ড লিখুন",
+  "password_must_be_characters": "পাসওয়ার্ড কমপক্ষে ৬টি অক্ষর থাকতে হবে",
+  "forget_password1": "পাসওয়ার্ড ভুলে গেছেন?",
+  "do_not_have_an_account": "একাউন্ট নেই?",
+  "create_account": "একাউন্ট খেলুন",
+  "terms_of_ues": "ব্যবহারের শর্তাবলী",
+  "and": "এবং",
+  "privacy_policy": "গোপনীয়তা নীতি",
+
+  "name": "নাম",
+  "enter_name": "নাম লিখুন",
+  "please_enter_valid_name": "আপনার সঠিক নাম লিখুন",
+  "phone_number": "ফোন নাম্বার",
+  "enter_number": "আপনার ফোন নাম্বার লিখুন",
+  "please_enter_valid_phone_number": "আপনার সঠিক ফোন নাম্বার লিখুন!",
+  "confirm_password": "আবার পাসওয়ার্ড লিখুন",
+  "password_do_not_match": "পাসওয়ার্ড মিলছে না",
+  "already_have_an_account": "অলরেডি আপনার একাউন্ট খোলা আছে?",
+
+
+  "create_post": "পোস্ট তৈরী করুন",
+  "write_interesting_content_get_more_likes_and_earn_more": "আকর্ষণীয় কিছু লিখুন, তাহলে বেশি লাইক পাবেন এবং বেশি উপার্জন করুন...",
+  "please_enter_all_information": "",
+  "post": "পোস্ট করুন",
+
+
+  "need_support": "সাহায্যের প্রয়োজন",
+  "something_went_wrong": "কিছু ভুল হয়েছে",
+  "more_like_more_earning": "বেশি লাইক বেশি ইনকাম",
+  "withdraw_coin": "কয়েন উত্তোলন করুন",
+  "transaction": "লেনদেন",
+  "transaction_not_available": "কোনো লেনদেন হয়নি",
+
+  "edit_post": "পোস্ট এডিট করুন",
+  "update": "আপডেট করুন",
+  "your_verification_status_pending": "আপনার একাউন্ট ভেরিফিকেশন প্রসেস চলতেছে। আমাদের দক্ষ সহায়তা দল আপনার তথ্য যাচাই করবে এবং আপনার অ্যাকাউন্ট ভেরিফাই করবে। আমাদের সাথে থাকুন ধন্যবাদ",
+  "re_verification": " আবার ভেরিফাই করুন",
+  "your_account_not_verified": "আপনার অ্যাকাউন্ট ভেরিফাই করা হয়নি, অনুগ্রহ করে অ্যাকাউন্ট ভেরিফাই করুন এবং উপার্জন শুরু করুন",
+  "no_posts_available": "কোনো পোস্ট নেই",
+  "create_posts_and_making_money": "পোস্ট তৈরী করুন এবং ইনকাম করুন...",
+  "logout": "লগআউট",
+  "about_us": "আমাদের সম্পর্কে জানুন",
+  "languages": "ভাষা",
+
+  "you_can_later_change_the_language": "আপনি চাইলে পরে হোম স্ক্রীন মেনু বার থেকে ভাষা পরিবর্তন করতে পারবেন।",
+  "select_languages": "ভাষা পছন্দ করুন",
+
+  "no_message_available": "কোনো মেসেজ নেই",
+  "write_your_message": "মেসেজ লিখুন",
+  "customer_support": "কাস্টমার সেবা",
+  "support": "24/7 সেবা",
+
+  "home": "হোম",
+  "coin": "কয়েন",
+  "profile": "প্রোফাইল",
+
+  "my_post": "আমার পোস্ট",
+
+  "edit_profile": " প্রোফাইল এডিট করুন",
+
+  "edit": "এডিট করুন",
+  "phone": "ফোন",
+  "account_verified": "একাউন্ট ভেরিফাই করা",
+  "account_not_verified": "একাউন্ট ভেরিফাই করা হয়নি",
+  "post_everyDay_and_earning_money": "প্রতিদিন পোস্ট করুন আর ইনকাম করুন!",
+  "verify_your_account_and_start_earning": "একাউন্ট ভেরিফাই করুন এবং ইনকাম করুন!",
+
+  "verify": "ভেরিফাই করুন",
+  "benefits_of_account_verification": "ভেরিফিকেশন করলে কি কি সুযোগ সুবিধা পাবেন?",
+  "note": "মনে রাখবেন",
+  "if_you_provide_incorrect_information": "আপনি যদি ভুল তথ্য প্রদান করেন, আপনার অ্যাকাউন্ট ভেরিফাই করা হবে না এবং যে অ্যাকাউন্ট থেকে আপনি অর্থ প্রদান করবেন সেই একাউন্ট অর্থ ফেরত দেওয়া হবে।",
+  "start_verification": "ভেরিফিকেশন শুরু করুন",
+  "skip": "এখন করবো না",
+  "requirement": "প্রয়োজন",
+  "you_can_earn_money_by_posting_content": "পোস্ট করার মাধ্যমে ইনকাম করতে পারবেন",
+  "you_will_get_green_tick_verification_icon_with_your_name": "আপনার নামের সাথে সবুজ টিক ভেরিফাই চিহ্ন দেখবেন।",
+  "you_will_get_coin_for_each_like": "আপনার প্রতিটি পোস্ট ১টি লাইকের জন্য 1 কয়েন পাবেন। এবং আপনি যদি অন্য লোকের পোস্ট লাইক করেন তবে আপনি 1 কয়েন পাবেন।",
+  "you_can_make_10_post_per_day": "প্রতিদিন ১০টি পোস্ট করতে পারবেন",
+  "lifetime_earning": "সারাজীবন ইনকাম করতে পারবেন",
+  "one_time_payment": "ভেরিফিকেশন করার জন্য শুধু একবার BDT ৫০০০ টাকা পেমেন্ট করতে হবে।",
+
+  "withdraw_history": "কয়েন উত্তোলন",
+  "withdraw": "উইথড্র",
+  "your_account_balance_low": "আপনার অ্যাকাউন্টের কয়েন কম, ন্যূনতম ১০০০ কয়েন হলে উইথড্র করতে পারবেন।",
+  "please_enter_withdraw_amount": "কত কয়েন উইথড্র করবেন লিখুন!",
+  "personal_bkash_nagad": "পার্সোনাল বিকাশ/নগদ নাম্বার",
+  "bkash_nagad_number": "বিকাশ/নগদ নাম্বার",
+  "bkash": "বিকাশ ",
+  "nagad": "নগদ"
 }

@@ -23,7 +23,7 @@ class EditPostScreen extends StatelessWidget {
           init: EditPostController(),
           builder: (logic) {
             return Scaffold(
-              appBar: const CustomAppBar(name: "Edit Post", isBack: true),
+              appBar: CustomAppBar(name: "edit_post".tr, isBack: true),
               body: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -83,7 +83,7 @@ class EditPostScreen extends StatelessWidget {
                             maxLength: 1000,
                             controller: logic.descriptionController,
                             decoration: InputDecoration(
-                              hintText: "Write interesting content, get more likes and earn more...",
+                              hintText: "write_interesting_content_get_more_likes_and_earn_more".tr,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12),
                                 borderSide: BorderSide(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor),
@@ -143,11 +143,11 @@ class EditPostScreen extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(height: 24,),
-                          logic.updateLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Update", onTap: (){
+                          logic.updateLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "update".tr, onTap: (){
                             if(logic.descriptionController.text != ""){
                               logic.updatePost(docId: Get.arguments);
                             }else{
-                              Fluttertoast.showToast(msg: "Please enter all information");
+                              Fluttertoast.showToast(msg: "please_enter_all_information".tr);
                             }
                           }),
                         ],

@@ -2,6 +2,7 @@ import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/auth_controller.dart';
 import 'package:earning/core/route/app_route.dart';
+import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
 import 'package:earning/view/widget/button/custom_button.dart';
 import 'package:earning/view/widget/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       builder: (logic) {
         return SafeArea(
           child: Scaffold(
+            appBar: CustomAppBar(name: "login".tr,isBack: true),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
               child: Form(
@@ -43,26 +45,26 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
 
                     //Email TextField -----------------------
-                    Align(alignment: Alignment.centerLeft,child: Text("Email",style: Theme.of(context).textTheme.titleLarge,)),
+                    Align(alignment: Alignment.centerLeft,child: Text("email".tr,style: Theme.of(context).textTheme.titleLarge,)),
                     const SizedBox(height: 5),
-                    CustomTextField(hintText: "Enter Email", validator: (email){
+                    CustomTextField(hintText: "enter_email".tr, validator: (email){
                       final bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
                       if(emailValid){
                         return null;
                       }else{
-                        return "Please Enter Valid Email Address";
+                        return "please_enter_valid_email_address".tr;
                       }
                     } , controller: logic.emailController, prefixIcon: Icons.email_outlined,),
                     const SizedBox(height: 12),
 
                     //Password TextField ------------------------
-                    Align(alignment: Alignment.centerLeft,child: Text("Password",style: Theme.of(context).textTheme.titleLarge,)),
+                    Align(alignment: Alignment.centerLeft,child: Text("password".tr,style: Theme.of(context).textTheme.titleLarge,)),
                     const SizedBox(height: 5),
-                    CustomTextField(hintText: "Enter Password", validator: (password){
+                    CustomTextField(hintText: "enter_password".tr, validator: (password){
                       if(password == null && password == ""){
-                        return "Please Enter Valid Password";
+                        return "please_enter_valid_password".tr;
                       }else if(password.length < 5){
-                        return "Password must be 6 characters";
+                        return "password_must_be_characters".tr;
                       }else{
                         return null;
                       }
@@ -74,15 +76,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: (){
                         Get.toNamed(AppRoute.forgetPassword);
                       },
-                      child: const Align(
+                      child: Align(
                         alignment: Alignment.centerRight,
-                        child: Text("Forget Password?",style: TextStyle(color: AppColors.greenColor),),
+                        child: Text("forget_password1".tr,style: const TextStyle(color: AppColors.greenColor),),
                       ),
                     ),
                     const SizedBox(height: 24),
 
                     //Login Button ---------------------------
-                    logic.isLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Login", onTap: (){
+                    logic.isLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "login".tr, onTap: (){
                       if(formKey.currentState!.validate()){
                         logic.login();
                       }
@@ -90,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     //Navigate Register Screen ------------------
                     const SizedBox(height: 44),
-                    const Text("Don't have an Account?"),
+                    Text("do_not_have_an_account".tr),
                     const SizedBox(height: 5),
                     GestureDetector(
                       onTap: ()=>Get.toNamed(AppRoute.registerScreen),
@@ -102,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: isDarkMode?AppColors.blackColor:AppColors.whiteColor,
                             border: Border.all(color: isDarkMode?AppColors.whiteColor:AppColors.blackColor)
                         ),
-                        child: Center(child: Text("Create Account",style: Theme.of(context).textTheme.titleMedium,),),
+                        child: Center(child: Text("create_account".tr,style: Theme.of(context).textTheme.titleMedium,),),
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -115,18 +117,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTap: (){
                             Get.toNamed(AppRoute.termsOfService);
                           },
-                          child: const Text("Terms of Ues",style: TextStyle(
+                          child: Text("terms_of_ues".tr,style: const TextStyle(
                             color: AppColors.greenColor,
                           )),
                         ),
                         const SizedBox(width: 5.0),
-                        const Text("And"),
+                        Text("and".tr),
                         const SizedBox(width: 5.0),
                         GestureDetector(
                           onTap: (){
                             Get.toNamed(AppRoute.privacyPolicy);
                           },
-                          child: const Text("Privacy Policy",style: TextStyle(
+                          child: Text("privacy_policy".tr,style: const TextStyle(
                             color: AppColors.greenColor,
                           )),
                         ),

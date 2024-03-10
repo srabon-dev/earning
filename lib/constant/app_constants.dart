@@ -1,3 +1,5 @@
+import 'package:earning/constant/app_images.dart';
+import 'package:earning/model/languages_model.dart';
 import 'package:flutter/material.dart';
 
 class AppConstants{
@@ -8,10 +10,8 @@ class AppConstants{
 
   static const String languageCode = "languagesCode";
   static const String countryCode = "countryCode";
-
-  static const List<String> languagesList = ['en', 'bn'];
-  static const List<Locale> localesList = [
-    Locale('en', 'US'),
-    Locale('bn', 'BD'),
-  ];
+  static List<LanguageModel> languages = [
+    LanguageModel(imageUrl: AppImages.englandFlag, languageName: 'English', countryCode: 'US', languageCode: 'en'),
+    LanguageModel(imageUrl: AppImages.bangladeshFlag, languageName: 'Bengali', countryCode: 'BN', languageCode: 'bn'),
+   ];
 }

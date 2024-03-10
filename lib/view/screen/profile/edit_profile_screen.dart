@@ -26,7 +26,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         init: ProfileController(),
         builder: (logic) {
           return Scaffold(
-            appBar: const CustomAppBar(name: "Edit Profile",isBack: true),
+            appBar: CustomAppBar(name: "edit_profile".tr,isBack: true),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 12),
               physics: const BouncingScrollPhysics(),
@@ -80,17 +80,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Name",
+                          "name".tr,
                           style: Theme.of(context).textTheme.titleLarge,
                         )),
                     const SizedBox(
                       height: 8,
                     ),
                     CustomTextField(
-                      hintText: "Enter Name",
+                      hintText: "enter_name".tr,
                       validator: (name) {
                         if (logic.nameController.text == "") {
-                          return "Please enter valid name";
+                          return "please_enter_valid_name".tr;
                         } else {
                           return null;
                         }
@@ -104,24 +104,24 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Phone Number",
+                          "phone_number".tr,
                           style: Theme.of(context).textTheme.titleLarge,
                         )),
                     const SizedBox(height: 5),
                     CustomTextField(
-                      hintText: "Enter Number",
+                      hintText: "enter_number".tr,
                       validator: (value){
                         if(RegExp(r'^01[3-9][0-9]{8}$').hasMatch(value ?? '')){
                           return null;
                         }else{
-                          return "Please enter valid Phone number!";
+                          return "please_enter_valid_phone_number".tr;
                         }
                       },
                       controller: logic.phoneController,
                       prefixIcon: Iconsax.call,
                     ),
                     const SizedBox(height: 24),
-                    logic.updateLoading?const Center(child: CircularProgressIndicator(),): CustomButton(text: "Update", onTap: (){
+                    logic.updateLoading?const Center(child: CircularProgressIndicator(),): CustomButton(text: "update".tr, onTap: (){
                       if(formKey.currentState!.validate()){
                         logic.updateProfile();
                       }

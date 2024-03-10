@@ -1,5 +1,6 @@
 import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
@@ -8,7 +9,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppBar(name: "About Us",isBack: true,),
+        appBar: CustomAppBar(name: "about_us".tr,isBack: true,),
         body: SingleChildScrollView(
           padding: EdgeInsets.symmetric(horizontal: 18,vertical: 12),
           physics: BouncingScrollPhysics(),

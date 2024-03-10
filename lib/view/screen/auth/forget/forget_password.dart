@@ -23,7 +23,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         builder: (logic) {
           return SafeArea(
             child: Scaffold(
-              appBar: const CustomAppBar(name: "Forget Password",isBack: true),
+              appBar: CustomAppBar(name: "forget_password".tr,isBack: true),
               body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 child: Form(
@@ -37,18 +37,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         height: 250,
                         child: Image.asset(AppImages.logo),
                       ),
-                      Align(alignment: Alignment.centerLeft,child: Text("Email",style: Theme.of(context).textTheme.titleLarge,)),
+                      Align(alignment: Alignment.centerLeft,child: Text("email".tr,style: Theme.of(context).textTheme.titleLarge,)),
                       const SizedBox(height: 5),
-                      CustomTextField(hintText: "Enter Email", validator: (email){
+                      CustomTextField(hintText: "enter_email".tr, validator: (email){
                         final bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
                         if(emailValid){
                           return null;
                         }else{
-                          return "Please Enter Valid Email Address";
+                          return "please_enter_valid_email_address".tr;
                         }
                       } ,controller: logic.resetEmailController, prefixIcon: Icons.email_outlined,),
                       const SizedBox(height: 24),
-                      logic.isLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "Confirm", onTap: (){
+                      logic.isLoading?const Center(child: CircularProgressIndicator(),) : CustomButton(text: "confirm".tr, onTap: (){
                         if(formKey.currentState!.validate()){
                           logic.forget();
                         }
