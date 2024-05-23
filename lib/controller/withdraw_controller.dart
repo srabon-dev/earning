@@ -16,6 +16,8 @@ class WithdrawController extends GetxController{
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   UserModel userModel = UserModel();
+  bool error = false;
+  List<QueryDocumentSnapshot<Map<String, dynamic>>>? data;
 
   void changeSelectedValue(int? newValue){
     selectedValue = newValue??0;
@@ -30,7 +32,7 @@ class WithdrawController extends GetxController{
       await firestore.collection('user').doc(firebaseAuth.currentUser?.uid).get().then((value) async {
         userModel = UserModel.fromJson(value.data() ?? {});
         update();
-        if((userModel.balance??0.0) >= 1000.0){
+        if((userModel.balance??0.0) >= 2000.0){
           if(await InternetConnectionChecker().hasConnection){
             final double newBalance = userModel.balance! - double.parse('${amountController.text.trim()}.0');
             firestore.collection('user').doc(firebaseAuth.currentUser?.uid).update({
@@ -50,6 +52,7 @@ class WithdrawController extends GetxController{
               }).then((value){
                 isLoading = false;
                 update();
+                getWithdraw();
                 Fluttertoast.showToast(msg: "Successful Send Withdraw Request");
               }).onError((error, stackTrace){
                 isLoading = false;
@@ -67,7 +70,7 @@ class WithdrawController extends GetxController{
             update();
           }
         }else{
-          Fluttertoast.showToast(msg: "Your coins is low, minimum withdrawal 1000 coins");
+          Fluttertoast.showToast(msg: "Your coins is low, minimum withdrawal 2000 coins");
           isLoading = false;
           update();
         }
@@ -81,5 +84,45 @@ class WithdrawController extends GetxController{
       update();
       Fluttertoast.showToast(msg: error.toString());
     }
+  }
+
+  bool isWithdrawLoading = false;
+  Future<void> getWithdraw() async {
+    try{
+      isWithdrawLoading = true;
+      update();
+      await firestore.collection('withdraw').orderBy("createdAt",descending: true).where('email',isEqualTo: FirebaseAuth.instance.currentUser?.email).get().then((value){
+        if(value.docs.isEmpty){
+          error = true;
+          update();
+          isWithdrawLoading = false;
+          update();
+        }else if(value.docs.isNotEmpty){
+          data = value.docs;
+          update();
+          isWithdrawLoading = false;
+          update();
+        }else{
+          error = true;
+          update();
+          isWithdrawLoading = false;
+          update();
+        }
+      }).onError((error, stackTrace){
+        isWithdrawLoading = false;
+        update();
+        log(error.toString());
+      });
+    }catch(error){
+      isWithdrawLoading = false;
+      update();
+      log(error.toString());
+    }
+  }
+
+  @override
+  void onInit() {
+    getWithdraw();
+    super.onInit();
   }
 }

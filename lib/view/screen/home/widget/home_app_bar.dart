@@ -33,7 +33,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget{
           }, icon: const Icon(Iconsax.menu,size: 28,),),
           const Text(AppConstants.appName,style: TextStyle(fontWeight: FontWeight.w800,fontSize: 32,fontFamily: "Bold"),),
           IconButton(onPressed: () async {
-            await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const AuthScreen()),(route) => false));
+            await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const AuthScreen()),(route) => false)).onError((error, stackTrace){
+              log(error.toString());
+            });
           }, icon: const Icon(Iconsax.logout,size: 28,),),
         ],
       ),

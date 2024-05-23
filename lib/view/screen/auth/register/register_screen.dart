@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      //Phone TextField ----------------------------------
+                      /*//Phone TextField ----------------------------------
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -115,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: logic.phoneController,
                         prefixIcon: Iconsax.call,
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 12),*/
 
                       //Password TextField -------------------------------
                       Align(
@@ -143,7 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       const SizedBox(height: 12),
 
-                      //Confirm Password TextField ------------------------
+                      /*//Confirm Password TextField ------------------------
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
@@ -164,7 +164,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         controller: logic.confirmPasswordRController,
                         isPassword: true,
                         prefixIcon: Iconsax.lock,
-                      ),
+                      ),*/
                       const SizedBox(height: 24),
                       logic.isLoading
                           ? const Center(

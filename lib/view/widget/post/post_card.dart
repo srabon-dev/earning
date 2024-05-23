@@ -271,8 +271,7 @@ class _PostCardState extends State<PostCard> {
                       isLiked: like,
                       onTap: (bool isLiked) async {
 
-                        await FirebaseFirestore.instance
-                            .collection("post")
+                        await FirebaseFirestore.instance.collection("post")
                             .doc(widget.postModel?.id ?? "")
                             .collection('like')
                             .doc(FirebaseAuth.instance.currentUser?.uid ?? "")

@@ -15,7 +15,7 @@ class TermsOfService extends StatelessWidget {
           init: TermsController(),
           builder: (logic) {
             return Scaffold(
-              appBar: const CustomAppBar(name: "terms_of_use",isBack: true),
+              appBar: CustomAppBar(name: "terms_of_use".tr,isBack: true),
               body: Stack(
                 children: [
                   InAppWebView(

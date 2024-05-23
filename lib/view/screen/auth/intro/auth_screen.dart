@@ -37,11 +37,16 @@ class AuthScreen extends StatelessWidget {
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Image.asset(AppImages.auth,fit: BoxFit.cover,),
-              )
+              ),
+
+              Text("earn_money_from_home".tr,style: Theme.of(context).textTheme.titleLarge,textAlign: TextAlign.center,),
+              Text("earn_real_money_by_completing_simple_tasks".tr,style: Theme.of(context).textTheme.bodyMedium,textAlign: TextAlign.center,),
             ],
           ),
         ),

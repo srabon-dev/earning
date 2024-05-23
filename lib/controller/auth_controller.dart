@@ -12,8 +12,8 @@ class AuthController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailRController = TextEditingController();
   TextEditingController passwordRController = TextEditingController();
-  TextEditingController confirmPasswordRController = TextEditingController();
-  TextEditingController phoneController = TextEditingController();
+  // TextEditingController confirmPasswordRController = TextEditingController();
+  // TextEditingController phoneController = TextEditingController();
 
 
   TextEditingController resetEmailController = TextEditingController();
@@ -70,7 +70,7 @@ class AuthController extends GetxController {
         if (value.user?.uid != null) {
           firestore.collection('user').doc(value.user?.uid).set({
             'name': nameController.text,
-            'phone': '+88${phoneController.text}',
+            'phone': '',
             'email': emailRController.text.trim(),
             'isVerified': false,
             'verificationStatus': "",
@@ -137,9 +137,7 @@ class AuthController extends GetxController {
 
     nameController.clear();
     emailRController.clear();
-    phoneController.clear();
     passwordRController.clear();
-    confirmPasswordRController.clear();
 
     resetEmailController.clear();
     super.onClose();

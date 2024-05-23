@@ -1,6 +1,9 @@
 {
   "appName": "Opex",
 
+  "earn_money_from_home": "Earn money from Home",
+  "earn_real_money_by_completing_simple_tasks": "Earn real money by completing simple tasks with the app. Easily make money by posting on apps like Facebook.",
+
   "save": "Save",
   "forget_password": "Forget Password",
   "email": "Email",
@@ -99,5 +102,13 @@
   "personal_bkash_nagad": "Personal Bkash/Nagad",
   "bkash_nagad_number": "Bkash/Nagad Number",
   "bkash": "Bkash",
-  "nagad": "Nagad"
+  "nagad": "Nagad",
+
+  "now_verification_is_closed": "Now verification is closed, please wait or contact support",
+  "yes": "Yes",
+  "no": "No",
+  "payment_cancel": "Payment Cancel",
+  "do_you_want_to_skip_verification": "Do you want to skip verification?",
+  "verification_problem": "Verification problem occurred, contact support",
+  "please_wait_verification_progress": "Please wait, verification is in progress"
 }

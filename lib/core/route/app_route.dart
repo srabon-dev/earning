@@ -12,6 +12,7 @@ import 'package:earning/view/screen/nav/nav_screen.dart';
 import 'package:earning/view/screen/optional/about_us.dart';
 import 'package:earning/view/screen/optional/privacy_policy.dart';
 import 'package:earning/view/screen/optional/terms_of_service.dart';
+import 'package:earning/view/screen/payment/payment_screen.dart';
 import 'package:earning/view/screen/post/my_post_screen.dart';
 import 'package:earning/view/screen/profile/edit_profile_screen.dart';
 import 'package:earning/view/screen/profile/profile_screen.dart';
@@ -46,6 +47,7 @@ class AppRoute{
   static const String withdrawScreen = "/withdraw_screen";
   static const String messageScreen = "/message_screen";
   static const String languagesScreen = "/languages_screen";
+  static const String paymentScreen = "/payment_screen";
   // static const String favoriteScreen = "/favorite_screen";
 
   //Optional
@@ -71,6 +73,7 @@ class AppRoute{
     GetPage(name: withdrawScreen, page: () => const WithdrawScreen()),
     GetPage(name: messageScreen, page: () => const MessageScreen()),
     GetPage(name: languagesScreen, page: () => const LanguagesScreen()),
+    GetPage(name: paymentScreen, page: () => const PaymentScreen()),
     // GetPage(name: favoriteScreen, page: () => const FavoriteScreen()),
     GetPage(name: privacyPolicy, page: () =>  PrivacyPolicy()),
     GetPage(name: termsOfService, page: () =>  TermsOfService()),

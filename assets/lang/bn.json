@@ -1,5 +1,7 @@
 {
   "appName": "ওপেক্স",
+  "earn_money_from_home": "ঘরে বসে টাকা ইনকাম করুন",
+  "earn_real_money_by_completing_simple_tasks": "অ্যাপের মাধ্যমে সহজ কাজগুলি সম্পূর্ণ করে প্রকৃত অর্থ উপার্জন করুন। Facebook এর মত অ্যাপে পোস্ট করে সহজেই অর্থ উপার্জন করুন।",
 
   "save" : "সেভ করুন",
   "forget_password": "পাসওয়ার্ড ভুলে গেছেন?",
@@ -99,5 +101,13 @@
   "personal_bkash_nagad": "পার্সোনাল বিকাশ/নগদ নাম্বার",
   "bkash_nagad_number": "বিকাশ/নগদ নাম্বার",
   "bkash": "বিকাশ ",
-  "nagad": "নগদ"
+  "nagad": "নগদ",
+
+  "now_verification_is_closed": "এখন ভেরিফিকেশন বন্ধ আছে, অপেক্ষা করুন অথবা সাপোর্ট যোগাযোগ করুন ",
+  "yes": "হ্যাঁ",
+  "no": "না",
+  "payment_cancel": "পেমেন্ট বাতিল",
+  "do_you_want_to_skip_verification": "আপনি ভেরিফিকেশন এড়িয়ে যেতে চান?",
+  "verification_problem": "ভেরিফিকেশন সমস্যা হয়েছে।, সাপোর্টে যোগাযোগ করুন",
+  "please_wait_verification_progress": "অপেক্ষা করুন , ভেরিফিকেশন চলতেছে"
 }

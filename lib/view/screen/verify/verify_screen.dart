@@ -34,8 +34,10 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("you_can_earn_money_by_posting_content".tr,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Flexible(
+                    child: Text("you_can_earn_money_by_posting_content".tr,
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ),
                 ],
               ),
               const SizedBox(height: 8.0),
@@ -49,9 +51,11 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text(
-                      "you_will_get_green_tick_verification_icon_with_your_name".tr,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Flexible(
+                    child: Text(
+                        "you_will_get_green_tick_verification_icon_with_your_name".tr,
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ),
                 ],
               ),
               const SizedBox(height: 8.0),
@@ -65,8 +69,10 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("you_will_get_coin_for_each_like".tr,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Flexible(
+                    child: Text("you_will_get_coin_for_each_like".tr,
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ),
                 ],
               ),
               const SizedBox(height: 8.0),
@@ -80,8 +86,10 @@ class VerifyScreen extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  Text("you_can_make_10_post_per_day".tr,
-                      style: Theme.of(context).textTheme.titleMedium),
+                  Flexible(
+                    child: Text("you_can_make_10_post_per_day".tr,
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -137,13 +145,13 @@ class VerifyScreen extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               CustomButton(text: "start_verification".tr, onTap: () {
-
+                Get.offAllNamed(AppRoute.paymentScreen);
               }),
               const SizedBox(height: 12),
               CustomButton(
                   text: "skip".tr,
                   onTap: () {
-                    Get.offAndToNamed(AppRoute.navScreen);
+                    Get.offAllNamed(AppRoute.navScreen);
                   }),
               const SizedBox(height: 24),
             ],

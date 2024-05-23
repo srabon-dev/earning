@@ -10,33 +10,31 @@ class PrivacyPolicy extends StatelessWidget {
   final GlobalKey webViewKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: GetBuilder<PrivacyController>(
-        init: PrivacyController(),
-        builder: (logic) {
-          return Scaffold(
-            appBar: const CustomAppBar(name: "privacy_policy",isBack: true),
-            body: Stack(
-              children: [
-                InAppWebView(
-                  key: webViewKey,
-                  onWebViewCreated: logic.isWebViewCreatedFunction,
-                  onReceivedError: logic.onWebViewReceiveError,
-                  onProgressChanged: logic.onWebViewProgressChange,
-                  initialSettings: InAppWebViewSettings(
-                    disableDefaultErrorPage: true,
-                    cacheEnabled: true,
-                    javaScriptEnabled: true,
-                  ),
-                  initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse(AppConstants.privacyUrl))),
+    return GetBuilder<PrivacyController>(
+      init: PrivacyController(),
+      builder: (logic) {
+        return Scaffold(
+          appBar: const CustomAppBar(name: "",isBack: true),
+          body: Stack(
+            children: [
+              InAppWebView(
+                key: webViewKey,
+                onWebViewCreated: logic.isWebViewCreatedFunction,
+                onReceivedError: logic.onWebViewReceiveError,
+                onProgressChanged: logic.onWebViewProgressChange,
+                initialSettings: InAppWebViewSettings(
+                  disableDefaultErrorPage: true,
+                  cacheEnabled: true,
+                  javaScriptEnabled: true,
                 ),
-                if(logic.isWebViewLoading)
-                  const Center(child: CircularProgressIndicator(),),
-              ],
-            ),
-          );
-        }
-      ),
+                initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse(AppConstants.privacyUrl))),
+              ),
+              if(logic.isWebViewLoading)
+                const Center(child: CircularProgressIndicator(),),
+            ],
+          ),
+        );
+      }
     );
   }
 }

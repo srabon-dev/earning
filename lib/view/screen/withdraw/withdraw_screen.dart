@@ -3,6 +3,7 @@ import 'package:earning/constant/app_colors.dart';
 import 'package:earning/constant/app_images.dart';
 import 'package:earning/controller/withdraw_controller.dart';
 import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
+import 'package:earning/view/widget/loading/image_loading.dart';
 import 'package:earning/view/widget/loading/transaction_loding.dart';
 import 'package:earning/view/widget/text_field/custom_text_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,7 +38,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
         builder: (logic) {
           return Scaffold(
             appBar: CustomAppBar(name: "withdraw_coin".tr,isBack: true,),
-            body: SingleChildScrollView(
+            body: logic.isWithdrawLoading?const Center(child: ImageLoading(),):SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 18,vertical: 12),
               child: Column(
@@ -176,7 +177,72 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                     ],
                   ),
                   const SizedBox(height: 12),
-                  StreamBuilder<QuerySnapshot>(
+                  logic.error?Center(child: Text("transaction_not_available".tr)):ListView.separated(
+                    itemCount: logic.data?.length??0,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return const TransactionLoading();
+                    },
+                    itemBuilder: (BuildContext context, int index){
+                      return Card(
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 12.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    height: 50,
+                                    width: 50,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(25),
+                                      child: logic.data?[index]['provider'] != "Bkash"?Image.asset(AppImages.nagad,fit: BoxFit.cover,):Image.asset(AppImages.bkash,fit: BoxFit.cover,),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8.0,),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("+88${logic.data?[index]['phone']??""}",style: Theme.of(context).textTheme.titleLarge,),
+                                      Text(DateFormat('MM/dd/yyyy, hh:mm a').format(logic.data?[index]['createdAt']?.toDate()??DateTime.now())),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8.0),
+                                      color: isDarkMode ? AppColors.whiteColor.withOpacity(0.4) : AppColors.blackColor.withOpacity(0.1),
+                                    ),
+                                    child: Center(
+                                      child: Text(logic.data?[index]['status']??"",
+                                        style: const TextStyle(
+                                            color: AppColors.redColor),
+                                      ),
+                                    ),
+                                  ),
+                                  Text("- ${logic.data?[index]['amount']??""} Coins",style: const TextStyle(color: AppColors.redColor,),),
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  /*StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance.collection('withdraw').orderBy("createdAt",descending: true).where('email',isEqualTo: FirebaseAuth.instance.currentUser?.email).snapshots(),
                       builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.hasError) {
@@ -265,7 +331,7 @@ class _WithdrawScreenState extends State<WithdrawScreen> {
                           return Center(child: Text("transaction_not_available".tr));
                         }
                       }
-                  ),
+                  ),*/
                 ],
               ),
             ),

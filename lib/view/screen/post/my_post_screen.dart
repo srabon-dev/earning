@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:earning/controller/my_post_controller.dart';
+import 'package:earning/core/route/app_route.dart';
 import 'package:earning/model/post_model.dart';
 import 'package:earning/view/widget/app_bar/custom_app_bar.dart';
 import 'package:earning/view/widget/loading/card_loading.dart';
 import 'package:earning/view/widget/post/post_card.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 
 class MyPostScreen extends StatelessWidget {
   const MyPostScreen({super.key});
@@ -19,6 +22,18 @@ class MyPostScreen extends StatelessWidget {
         builder: (logic) {
           return Scaffold(
             appBar: CustomAppBar(name: "my_post".tr),
+            floatingActionButton: FloatingActionButton.extended(onPressed: (){
+              if(logic.userModel.isVerified??false){
+                Get.toNamed(AppRoute.createPostScreen);
+              }else{
+                Fluttertoast.showToast(msg: "your_account_not_verified".tr);
+              }
+            },label: Column(
+              children: [
+                const Icon(Iconsax.video),
+                Text("post".tr),
+              ],
+            ),),
             body: Padding(
               padding: const EdgeInsets.only(top: 18.0),
               child: StreamBuilder<QuerySnapshot>(
